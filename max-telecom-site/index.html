@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MAX Telecom Components — KOSCAB ресми дилері</title>
+<meta name="description" content="MAX Telecom Components — «Костромакабель» (KOSCAB) зауытының Қазақстандағы ресми дилері. Оптикалық кабель және байланыс желілеріне арналған компоненттер. Официальный дилер KOSCAB в Казахстане.">
+<meta property="og:title" content="MAX Telecom Components">
+<meta property="og:description" content="Официальный дилер KOSCAB в Казахстане. Оптический кабель и компоненты для сетей связи.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/logo-max-dark.png">
+<meta name="theme-color" content="#065874">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<style>
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+
+/* Layout: светлый каталог-витрина производителя: белая шапка + бирюзовая полоса, баннер-слайдер, сетка карточек категорий с большим окном описания, цифры, бирюзовые преимущества, сертификат, контакты, бирюзовый подвал */
+:root {
+  color-scheme: light;
+  --teal: #065874;
+  --teal-2: #0a6f91;
+  --cyan: #00aeef;
+  --blue: #1f5fe8;
+  --navy: #0a1037;
+  --text: #5c6470;
+  --bg: #ffffff;
+  --soft: #f1f6f9;
+  --line: #e2e8ed;
+  --font: "Montserrat", "Segoe UI", Arial, sans-serif;
+  --gl: max(16px, env(safe-area-inset-left, 0px));
+  --gr: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 900px) { :root { --gl: max(40px, env(safe-area-inset-left, 0px)); --gr: max(40px, env(safe-area-inset-right, 0px)); } }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 15px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--cyan); }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; }
+h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.wrap { width: 100%; max-width: 1280px; margin-inline: auto; padding-left: var(--gl); padding-right: var(--gr); }
+.section { padding-block: 64px; }
+.section-title { font-size: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; }
+.section-title.center { text-align: center; }
+.sub { margin: 8px 0 0; color: var(--text); font-size: 14px; }
+.sub.center { text-align: center; }
+
+/* topbar */
+.topbar { background: var(--cyan); color: #fff; font-size: 12px; font-weight: 600; text-align: center; }
+.topbar .wrap { padding-block: 8px; }
+
+/* header */
+.header { background: #fff; position: relative; z-index: 20; }
+.header-row { display: flex; align-items: center; gap: 28px; height: 74px; }
+.logo { height: 38px; width: auto; display: block; }
+.nav { display: flex; gap: 30px; margin-left: 24px; flex: 1; }
+.nav a { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .04em; color: var(--navy); padding-block: 6px; border-bottom: 2px solid transparent; transition: border-color .2s, color .2s; }
+.nav a:hover { color: var(--teal-2); border-color: var(--cyan); }
+.head-contacts { display: grid; gap: 2px; font-size: 13px; font-weight: 600; color: var(--navy); }
+.head-contacts span { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.head-contacts svg { width: 14px; height: 14px; stroke: var(--teal-2); flex: none; }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.lang button { border: 0; background: #fff; color: var(--navy); font-size: 11px; font-weight: 700; padding: 8px 10px; cursor: pointer; letter-spacing: .04em; }
+.lang button + button { border-left: 1px solid var(--line); }
+.lang button[aria-pressed="true"] { background: var(--teal); color: #fff; }
+.burger { display: none; margin-left: auto; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 4px; background: #fff; cursor: pointer; }
+.burger span { display: block; width: 18px; height: 2px; margin: 4px auto; background: var(--navy); }
+@media (max-width: 1080px) { .head-contacts { display: none; } }
+@media (max-width: 860px) {
+  .nav { display: none; }
+  .burger { display: block; }
+  .header-row { gap: 12px; }
+  .lang { margin-left: auto; }
+  .burger { margin-left: 0; }
+  .logo { height: 30px; }
+}
+.mnav { display: grid; border-top: 1px solid var(--line); background: #fff; }
+.mnav a { padding: 14px var(--gr) 14px var(--gl); border-bottom: 1px solid var(--line); font-size: 13px; font-weight: 600; text-transform: uppercase; color: var(--navy); }
+
+/* teal bar */
+.bar { background: var(--teal); color: #fff; }
+.bar-row { display: flex; align-items: center; gap: 20px; min-height: 52px; padding-block: 8px; }
+.bar-btn { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: var(--teal); border-radius: 4px; padding: 9px 16px; font-size: 13px; font-weight: 600; white-space: nowrap; }
+.bar-btn svg { width: 16px; height: 16px; stroke: currentColor; }
+.bar-text { font-size: 13px; font-weight: 500; color: #d6eaf2; min-width: 0; }
+.bar-badge { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; min-width: 0; text-align: right; line-height: 1.3; }
+.bar-badge i { flex: none; }
+@media (max-width: 520px) { .bar-row { gap: 12px; } .bar-badge { font-size: 11px; } }
+.bar-badge i { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 3px rgba(0,174,239,.3); }
+@media (max-width: 700px) { .bar-text { display: none; } }
+
+/* hero slider */
+.hero { position: relative; overflow: hidden; background: linear-gradient(115deg, #0a1a3d 0%, #0b2f5c 52%, #0a5878 100%); color: #fff; }
+.hero::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 2px, transparent 2px 46px); }
+.slides { position: relative; display: grid; }
+.slide { grid-area: 1 / 1; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 32px; min-height: 420px; padding-block: 48px 64px;
+  opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility .6s; }
+.slide.is-active { opacity: 1; visibility: visible; }
+.slide h1, .slide h2 { color: #fff; font-size: clamp(34px, 5vw, 62px); line-height: 1.04; font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; }
+.slide p { margin: 18px 0 26px; max-width: 46ch; font-size: clamp(15px, 1.4vw, 18px); color: #cfe2ee; font-weight: 500; }
+.slide-copy { min-width: 0; }
+.slide-art { display: grid; place-items: center; min-width: 0; }
+.slide-art svg { width: min(100%, 440px); height: auto; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 0 22px; border-radius: 4px; border: 1px solid transparent;
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.btn-white { background: #fff; color: var(--navy); }
+.btn-white:hover { background: var(--cyan); color: #fff; }
+.btn-line { border-color: rgba(255,255,255,.6); color: #fff; background: transparent; }
+.btn-line:hover { background: #fff; color: var(--navy); }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-2); }
+.btn-ghost { border-color: var(--teal); color: var(--teal); background: #fff; }
+.btn-ghost:hover { background: var(--teal); color: #fff; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.dots { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); display: flex; gap: 10px; z-index: 2; }
+.dots button { width: 34px; height: 4px; padding: 0; border: 0; border-radius: 2px; background: rgba(255,255,255,.35); cursor: pointer; }
+.dots button[aria-current="true"] { background: var(--cyan); }
+@media (max-width: 760px) {
+  .slide { grid-template-columns: 1fr; min-height: 0; padding-block: 36px 56px; }
+  .slide-art { order: -1; }
+  .slide-art svg { width: min(70%, 260px); }
+}
+
+/* products grid */
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; margin-top: 36px; }
+.card { display: grid; justify-items: center; align-content: center; gap: 14px; min-height: 168px; padding: 22px 14px; background: #fff; border: 1px solid var(--line); border-radius: 6px;
+  box-shadow: 0 3px 12px rgba(10, 16, 55, .09); cursor: pointer; text-align: center; transition: transform .2s, box-shadow .2s, border-color .2s; color: var(--navy); }
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(10, 16, 55, .14); border-color: var(--cyan); }
+.card svg { width: 56px; height: 56px; color: var(--teal); }
+.card span { font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: .02em; line-height: 1.35; }
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } .card { min-height: 140px; } .card svg { width: 46px; height: 46px; } .card span { font-size: 11px; } }
+
+/* big window (modal) */
+.modal { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; background: rgba(10, 16, 55, .55);
+  padding: calc(env(safe-area-inset-top, 0px) + 16px) var(--gr) calc(env(safe-area-inset-bottom, 0px) + 16px) var(--gl); animation: fade .2s ease; }
+@keyframes fade { from { opacity: 0; } }
+.window { position: relative; width: min(980px, 100%); max-height: 100%; overflow: auto; background: #fff; border-radius: 8px; box-shadow: 0 30px 80px rgba(10,16,55,.35);
+  display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); animation: pop .25s cubic-bezier(.2,.8,.2,1); }
+@keyframes pop { from { transform: translateY(14px) scale(.98); } }
+.window-art { position: relative; display: grid; place-items: center; min-height: 340px; background: linear-gradient(160deg, #e9f6fc, #d4ecf6); color: var(--teal); }
+.window-art svg { width: 46%; height: auto; }
+.window-art .num { position: absolute; left: 22px; top: 18px; font-size: 13px; font-weight: 700; color: var(--teal-2); letter-spacing: .08em; }
+.window-body { padding: 40px 40px 32px; display: grid; align-content: start; gap: 16px; min-width: 0; }
+.window-kicker { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); }
+.window-body h3 { font-size: clamp(24px, 3vw, 34px); font-weight: 700; text-transform: uppercase; line-height: 1.1; }
+.window-body p { margin: 0; font-size: 15px; color: var(--text); max-width: 52ch; }
+.specs { display: flex; flex-wrap: wrap; gap: 8px; }
+.specs span { padding: 7px 12px; border-radius: 4px; background: var(--soft); color: var(--teal); font-size: 12px; font-weight: 600; }
+.window-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 8px; }
+.pager { margin-left: auto; display: flex; gap: 6px; }
+.pager button, .close { width: 40px; height: 40px; border-radius: 4px; border: 1px solid var(--line); background: #fff; color: var(--navy); cursor: pointer; font-size: 16px; }
+.pager button:hover, .close:hover { border-color: var(--teal); color: var(--teal); }
+.close { position: absolute; top: 12px; right: 12px; z-index: 2; }
+@media (max-width: 760px) {
+  .window { grid-template-columns: 1fr; }
+  .window-art { min-height: 180px; }
+  .window-art svg { width: 30%; }
+  .window-body { padding: 24px 20px 22px; }
+  .pager { margin-left: 0; }
+}
+
+/* about */
+.about { background: var(--soft); }
+.about.section { padding-block: 88px; }
+.about-center { display: grid; justify-items: center; text-align: center; gap: 18px; }
+.about-kicker { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .14em; color: var(--teal-2); }
+.about-big { line-height: 0; }
+.about-big img { width: min(520px, 80vw); height: auto; display: block; }
+.about-lead { margin: 10px 0 0; max-width: 64ch; font-size: 14px; line-height: 1.65; color: var(--text); }
+
+/* advantages */
+.adv { background: var(--teal); color: #fff; }
+.adv .section-title { color: #fff; }
+.adv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 24px; margin-top: 36px; }
+.adv-item { display: grid; justify-items: center; gap: 14px; text-align: center; }
+.adv-item svg { width: 44px; height: 44px; color: #fff; }
+.adv-item span { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; max-width: 26ch; line-height: 1.4; }
+@media (max-width: 700px) { .adv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* certificate */
+.cert-grid { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 48px; align-items: center; }
+.cert-img { margin: 0; border-radius: 6px; overflow: hidden; box-shadow: 0 14px 40px rgba(10,16,55,.16); border: 1px solid var(--line); max-width: 100%; }
+.cert-img img { display: block; width: 100%; height: auto; }
+.cert-text p { margin: 16px 0 22px; font-size: 15px; max-width: 58ch; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 26px; }
+.facts div { padding: 14px 16px; background: var(--soft); border-radius: 6px; min-width: 0; }
+.facts dt { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text); }
+.facts dd { margin: 4px 0 0; font-size: 16px; font-weight: 700; color: var(--navy); overflow-wrap: anywhere; }
+@media (max-width: 860px) { .cert-grid { grid-template-columns: 1fr; } .cert-img { max-width: 320px; } }
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
+
+/* contacts */
+.contacts { background: var(--soft); }
+.c-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
+.c-card { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 22px; display: grid; gap: 10px; align-content: start; min-width: 0; box-shadow: 0 3px 12px rgba(10,16,55,.06); }
+.c-card svg { width: 26px; height: 26px; color: var(--teal); }
+.c-card small { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.c-card strong { font-size: 16px; color: var(--navy); overflow-wrap: anywhere; user-select: all; }
+.copy { justify-self: start; border: 0; background: none; padding: 0; color: var(--teal-2); font-size: 12px; font-weight: 700; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 1000px) { .c-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .c-grid { grid-template-columns: 1fr; } }
+
+/* footer */
+.footer { background: var(--teal); color: #d6eaf2; font-size: 13px; }
+.f-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.2fr); gap: 32px; padding-block: 48px 32px; }
+.f-grid h4 { margin: 0 0 14px; color: #fff; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.f-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.f-grid a:hover { color: #fff; text-decoration: underline; }
+.f-logo { display: inline-block; background: #fff; border-radius: 4px; padding: 10px 14px; margin-bottom: 14px; }
+.f-logo img { height: 30px; width: auto; display: block; }
+.f-bottom { border-top: 1px solid rgba(255,255,255,.18); padding-block: 18px; font-size: 12px; color: #a9cfdd; }
+@media (max-width: 860px) { .f-grid { grid-template-columns: 1fr; } }
+
+.lightbox { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: rgba(10,16,55,.8);
+  padding: calc(env(safe-area-inset-top, 0px) + 56px) var(--gr) calc(env(safe-area-inset-bottom, 0px) + 20px) var(--gl); }
+.lightbox img { max-width: 100%; max-height: 100%; width: auto; border-radius: 6px; }
+.lightbox .close { top: calc(env(safe-area-inset-top, 0px) + 12px); right: var(--gr); position: absolute; }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<!-- SVG-иконки -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-indoor" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="7" y="9" width="34" height="22" rx="2"/><path d="M18 39h12M24 31v8"/><path d="M13 20c5-6 9 6 14 0s7 4 8 1" stroke-linecap="round"/></symbol>
+    <symbol id="i-dist" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="13" y="6" width="22" height="36"/><path d="M18 12h4M26 12h4M18 19h4M26 19h4M18 26h4M26 26h4M21 42v-8h6v8"/><path d="M41 10v28M35 16h6M35 30h6"/></symbol>
+    <symbol id="i-ftth" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M22 24 34 14l12 10"/><path d="M25 22v18h18V22"/><path d="M31 40v-8h6v8"/><path d="M6 6v36M2 11h8M2 17h8"/><path d="M6 11c8 0 14 3 19 10"/></symbol>
+    <symbol id="i-drop" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="6" y="15" width="36" height="18" rx="9"/><circle cx="14" cy="24" r="3.5"/><circle cx="34" cy="24" r="3.5"/><circle cx="24" cy="24" r="2" fill="currentColor"/><path d="M22 15l2 3 2-3M22 33l2-3 2 3"/></symbol>
+    <symbol id="i-aerial" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M24 4 15 44M24 4l9 40M17 34h14M19 24h10M21 14h6M11 14h26M9 24h30"/><path d="M2 18c8 4 14 4 22 0s14-4 22 0"/></symbol>
+    <symbol id="i-duct" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="12"/><circle cx="20" cy="21" r="3"/><circle cx="28" cy="21" r="3"/><circle cx="24" cy="28.5" r="3"/></symbol>
+    <symbol id="i-ground" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 18h40"/><path d="M8 18l4-4M18 18l4-4M28 18l4-4M38 18l4-4"/><path d="M6 36h36" stroke-dasharray="3 3"/><circle cx="24" cy="30" r="6"/><circle cx="24" cy="30" r="2"/><path d="M24 24v-6"/></symbol>
+    <symbol id="i-closure" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="16" y="6" width="16" height="30" rx="8"/><path d="M14 36h20v4H14z"/><path d="M19 40v4M24 40v4M29 40v4M21 14h6M21 20h6M21 26h6"/></symbol>
+    <symbol id="i-clamp" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 30h18"/><path d="M22 22l16 6v4l-16 6z"/><path d="M38 30h6"/><circle cx="12" cy="14" r="5"/><path d="M12 19v11"/></symbol>
+    <symbol id="i-splice" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 24h16M28 24h16"/><path d="M24 6l-3 10h6zM24 42l-3-10h6z"/><path d="M24 19v2M24 27v2M20 24h-1M29 24h-1M21 21l-1-1M27 21l1-1M21 27l-1 1M27 27l1 1" stroke-linecap="round"/><rect x="4" y="20" width="10" height="8"/><rect x="34" y="20" width="10" height="8"/></symbol>
+    <symbol id="i-patch" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M10 12v8c0 14 28 4 28 18v-4" stroke-linecap="round"/><rect x="6" y="4" width="8" height="8" rx="1"/><rect x="34" y="34" width="8" height="8" rx="1"/><path d="M8 4V1M12 4V1M36 42v3M40 42v3"/></symbol>
+    <symbol id="i-split" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M2 24h12"/><rect x="14" y="18" width="10" height="12" rx="1"/><path d="M24 21c6 0 8-11 14-11h8M24 24h22M24 27c6 0 8 11 14 11h8M24 22.5c6 0 9-4 14-4h8M24 25.5c6 0 9 4 14 4h8"/></symbol>
+    <symbol id="i-odf" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="16" width="42" height="16" rx="1"/><path d="M3 20h-0M7 20v8M41 20v8"/><rect x="11" y="21" width="3" height="6"/><rect x="16" y="21" width="3" height="6"/><rect x="21" y="21" width="3" height="6"/><rect x="26" y="21" width="3" height="6"/><rect x="31" y="21" width="3" height="6"/><path d="M12 32v6M22 32v8M32 32v5" stroke-linecap="round"/></symbol>
+    <symbol id="i-copper" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 18c6 0 6 12 12 12s6-12 12-12 6 12 12 12h4M4 30c6 0 6-12 12-12s6 12 12 12 6-12 12-12h4"/><rect x="38" y="34" width="8" height="10" rx="1"/><path d="M40 38h4"/></symbol>
+    <symbol id="i-cabinet" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="10" y="4" width="28" height="38" rx="1"/><path d="M14 10h20M14 16h20M14 22h20"/><circle cx="33" cy="32" r="1.5"/><path d="M13 42v3M35 42v3"/></symbol>
+    <symbol id="i-tools" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M10 38l14-14M14 42l14-14"/><path d="M24 24l10-14 6 2-8 16zM28 28l14-10 2 6-16 8z"/><circle cx="9" cy="39" r="3"/><circle cx="13" cy="43" r="3"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M5 3h4l2 5-3 2a11 11 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 20l1.3-4A8.5 8.5 0 1 1 8.3 19z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8a5 5 0 0 1-2.8-2.8l.8-1-1-2z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></symbol>
+    <symbol id="i-badge" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="24" cy="20" r="12"/><path d="M18 20l4 4 8-8"/><path d="M16 30l-4 14 12-6 12 6-4-14"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 4h18l8 8v32H12z"/><path d="M30 4v8h8M18 22h14M18 28h14M18 34h9"/></symbol>
+    <symbol id="i-project" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="6" y="8" width="36" height="28" rx="1"/><path d="M14 44h20M24 36v8"/><path d="M12 28l8-8 6 5 10-11"/></symbol>
+    <symbol id="i-map" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 12l13-6 14 6 13-6v30l-13 6-14-6-13 6z"/><path d="M17 6v30M31 12v30"/></symbol>
+    <symbol id="i-box" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M24 4l18 9v22l-18 9-18-9V13z"/><path d="M6 13l18 9 18-9M24 22v22"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><circle cx="16" cy="12" r="6"/><circle cx="34" cy="14" r="5"/><path d="M4 40c0-8 5-14 12-14s12 6 12 14M26 30c2-3 5-5 8-5 6 0 10 5 10 12"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </defs>
+</svg>
+
+<div class="topbar"><div class="wrap" data-i18n="top"></div></div>
+
+<header class="header" id="top">
+  <div class="wrap header-row">
+    <a href="#top" aria-label="MAX Telecom Components"><img class="logo" src="logo-max-dark.png" alt="MAX Telecom Components" width="640" height="186"></a>
+    <nav class="nav" aria-label="Меню">
+      <a href="#about" data-i18n="nav_about"></a>
+      <a href="#products" data-i18n="nav_products"></a>
+      <a href="#cert" data-i18n="nav_cert"></a>
+      <a href="#contacts" data-i18n="nav_contacts"></a>
+    </nav>
+    <div class="head-contacts">
+      <span><svg><use href="#i-phone"/></svg><span class="v-phone"></span></span>
+      <span><svg><use href="#i-wa"/></svg><a href="https://wa.me/77023899264" target="_blank" rel="noopener">WhatsApp</a></span>
+    </div>
+    <div class="lang" role="group" aria-label="Язык / Тіл / Language">
+      <button type="button" data-lang="kk">ҚАЗ</button><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button>
+    </div>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mnav" id="mnav" hidden>
+    <a href="#about" data-i18n="nav_about"></a>
+    <a href="#products" data-i18n="nav_products"></a>
+    <a href="#cert" data-i18n="nav_cert"></a>
+    <a href="#contacts" data-i18n="nav_contacts"></a>
+  </nav>
+</header>
+
+<div class="bar">
+  <div class="wrap bar-row">
+    <a class="bar-btn" href="#products"><svg viewBox="0 0 24 24"><use href="#i-menu"/></svg><span data-i18n="bar_btn"></span></a>
+    <span class="bar-text" data-i18n="bar_text"></span>
+    <span class="bar-badge"><i></i><span data-i18n="bar_badge"></span></span>
+  </div>
+</div>
+
+<main>
+  <section class="hero" aria-roledescription="carousel">
+    <div class="wrap slides" id="slides">
+      <div class="slide is-active">
+        <div class="slide-copy">
+          <h1 data-i18n="s1_t"></h1>
+          <p data-i18n="s1_s"></p>
+          <div class="hero-actions"><a class="btn btn-white" href="#products" data-i18n="btn_products"></a><a class="btn btn-line" href="#contacts" data-i18n="btn_contact"></a></div>
+        </div>
+        <div class="slide-art" aria-hidden="true">
+          <svg viewBox="0 0 400 400">
+            <circle cx="200" cy="200" r="170" fill="#0d1f3c" stroke="#3d6a94" stroke-width="4"/>
+            <circle cx="200" cy="200" r="150" fill="none" stroke="#f5d90a" stroke-opacity=".35" stroke-width="16" stroke-dasharray="2 5"/>
+            <circle cx="200" cy="200" r="30" fill="#24364f" stroke="#7d97b1" stroke-width="3"/>
+            <g stroke-width="4" fill="#0a1830">
+              <circle cx="200" cy="105" r="42" stroke="#2f6bff"/><circle cx="282" cy="152" r="42" stroke="#ff8a1c"/><circle cx="282" cy="248" r="42" stroke="#22b24c"/>
+              <circle cx="200" cy="295" r="42" stroke="#a57240"/><circle cx="118" cy="248" r="42" stroke="#9aa6b2"/><circle cx="118" cy="152" r="42" stroke="#f2f4f6"/>
+            </g>
+            <g>
+              <circle cx="188" cy="96" r="7" fill="#2f6bff"/><circle cx="212" cy="96" r="7" fill="#ff8a1c"/><circle cx="188" cy="116" r="7" fill="#22b24c"/><circle cx="212" cy="116" r="7" fill="#f2f4f6"/>
+              <circle cx="270" cy="143" r="7" fill="#e5262b"/><circle cx="294" cy="143" r="7" fill="#f5d90a"/><circle cx="282" cy="163" r="7" fill="#2ad4d0"/>
+              <circle cx="270" cy="240" r="7" fill="#7b3fbf"/><circle cx="294" cy="240" r="7" fill="#ff7fb0"/><circle cx="282" cy="260" r="7" fill="#2f6bff"/>
+              <circle cx="188" cy="286" r="7" fill="#ff8a1c"/><circle cx="212" cy="286" r="7" fill="#22b24c"/><circle cx="200" cy="306" r="7" fill="#f2f4f6"/>
+              <circle cx="106" cy="240" r="7" fill="#f5d90a"/><circle cx="130" cy="240" r="7" fill="#e5262b"/><circle cx="118" cy="260" r="7" fill="#2ad4d0"/>
+              <circle cx="106" cy="143" r="7" fill="#7b3fbf"/><circle cx="130" cy="143" r="7" fill="#2f6bff"/><circle cx="118" cy="163" r="7" fill="#ff7fb0"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="slide" aria-hidden="true">
+        <div class="slide-copy">
+          <h2 data-i18n="s2_t"></h2>
+          <p data-i18n="s2_s"></p>
+          <div class="hero-actions"><a class="btn btn-white" href="#products" data-i18n="btn_products"></a></div>
+        </div>
+        <div class="slide-art" aria-hidden="true">
+          <svg viewBox="0 0 400 400">
+            <ellipse cx="200" cy="350" rx="150" ry="14" fill="#06122a" opacity=".6"/>
+            <circle cx="200" cy="195" r="150" fill="#0d1f3c" stroke="#3d6a94" stroke-width="5"/>
+            <circle cx="200" cy="195" r="118" fill="none" stroke="#111" stroke-width="0"/>
+            <g fill="none" stroke="#1d2c42" stroke-width="10">
+              <circle cx="200" cy="195" r="112"/><circle cx="200" cy="195" r="100"/><circle cx="200" cy="195" r="88"/><circle cx="200" cy="195" r="76"/><circle cx="200" cy="195" r="64"/>
+            </g>
+            <g fill="none" stroke="#2b3f5c" stroke-width="2"><circle cx="200" cy="195" r="117"/><circle cx="200" cy="195" r="106"/><circle cx="200" cy="195" r="94"/><circle cx="200" cy="195" r="82"/><circle cx="200" cy="195" r="70"/></g>
+            <circle cx="200" cy="195" r="46" fill="#0a5878" stroke="#5fb6d8" stroke-width="4"/>
+            <circle cx="200" cy="195" r="14" fill="#0a1830"/>
+            <path d="M200 83 C 290 60, 350 120, 395 110" fill="none" stroke="#1d2c42" stroke-width="10" stroke-linecap="round"/>
+            <path d="M240 115 l22 -8 M150 290 l18 10" stroke="#00aeef" stroke-width="3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="slide" aria-hidden="true">
+        <div class="slide-copy">
+          <h2 data-i18n="s3_t"></h2>
+          <p data-i18n="s3_s"></p>
+          <div class="hero-actions"><a class="btn btn-white" href="#contacts" data-i18n="btn_contact"></a></div>
+        </div>
+        <div class="slide-art" aria-hidden="true">
+          <svg viewBox="0 0 400 400" fill="none" stroke-linecap="round">
+            <path d="M70 90 C 70 250, 330 150, 330 310" stroke="#f5d90a" stroke-width="12"/>
+            <path d="M110 70 C 110 230, 290 170, 290 330" stroke="#2ad4d0" stroke-width="12" opacity=".85"/>
+            <rect x="52" y="40" width="36" height="50" rx="4" fill="#2f6bff"/><rect x="62" y="22" width="16" height="20" fill="#e6edf3"/>
+            <rect x="92" y="20" width="36" height="50" rx="4" fill="#22b24c"/><rect x="102" y="2" width="16" height="20" fill="#e6edf3"/>
+            <rect x="312" y="310" width="36" height="50" rx="4" fill="#2f6bff"/><rect x="322" y="358" width="16" height="20" fill="#e6edf3"/>
+            <rect x="272" y="330" width="36" height="50" rx="4" fill="#22b24c"/>
+            <circle cx="210" cy="200" r="60" stroke="#00aeef" stroke-width="2" stroke-dasharray="4 8"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <section class="section" id="products">
+    <div class="wrap">
+      <h2 class="section-title center" data-i18n="products_h"></h2>
+      <p class="sub center" data-i18n="products_sub"></p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="wrap about-center">
+      <span class="about-kicker" data-i18n="about_h"></span>
+      <h2 class="about-big"><img src="logo-max-dark.png" alt="MAX Telecom Components" width="640" height="186"></h2>
+      <p class="about-lead" data-i18n="about_p"></p>
+    </div>
+  </section>
+
+  <section class="section adv">
+    <div class="wrap">
+      <h2 class="section-title" data-i18n="adv_h"></h2>
+      <div class="adv-grid">
+        <div class="adv-item"><svg><use href="#i-badge"/></svg><span data-i18n="adv1"></span></div>
+        <div class="adv-item"><svg><use href="#i-doc"/></svg><span data-i18n="adv2"></span></div>
+        <div class="adv-item"><svg><use href="#i-project"/></svg><span data-i18n="adv3"></span></div>
+        <div class="adv-item"><svg><use href="#i-map"/></svg><span data-i18n="adv4"></span></div>
+        <div class="adv-item"><svg><use href="#i-box"/></svg><span data-i18n="adv5"></span></div>
+        <div class="adv-item"><svg><use href="#i-hand"/></svg><span data-i18n="adv6"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cert">
+    <div class="wrap cert-grid">
+      <figure class="cert-img"><img src="cert.jpg" alt="Сертификат официального дилера KOSCAB" width="927" height="1304" loading="lazy"></figure>
+      <div class="cert-text">
+        <h2 class="section-title" data-i18n="cert_h"></h2>
+        <p data-i18n="cert_p"></p>
+        <dl class="facts">
+          <div><dt data-i18n="cert_reg"></dt><dd>KOS-ODR-Y2026-056</dd></div>
+          <div><dt data-i18n="cert_issued"></dt><dd>30.09.2026</dd></div>
+          <div><dt data-i18n="cert_valid"></dt><dd>30.09.2027</dd></div>
+        </dl>
+        <button class="btn btn-teal" type="button" id="openCert" data-i18n="cert_open"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contacts" id="contacts">
+    <div class="wrap">
+      <h2 class="section-title center" data-i18n="contacts_h"></h2>
+      <p class="sub center" data-i18n="contacts_sub"></p>
+      <div class="c-grid">
+        <div class="c-card"><svg><use href="#i-phone"/></svg><small data-i18n="c_phone"></small><strong class="v-phone" id="cPhone"></strong><button class="copy" type="button" data-copy="cPhone" data-i18n="copy"></button></div>
+        <div class="c-card"><svg><use href="#i-wa"/></svg><small>WhatsApp</small><strong>+7 702 389 92 64</strong><a class="copy" href="https://wa.me/77023899264" target="_blank" rel="noopener" data-i18n="wa_write"></a></div>
+        <div class="c-card"><svg><use href="#i-pin"/></svg><small data-i18n="c_addr"></small><strong data-i18n="addr" style="user-select:text"></strong></div>
+        <div class="c-card"><svg><use href="#i-clock"/></svg><small data-i18n="c_hours"></small><strong data-i18n="hours" style="user-select:text"></strong></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap f-grid">
+    <div>
+      <span class="f-logo"><img src="logo-max-dark.png" alt="MAX Telecom Components" width="640" height="186"></span>
+      <p style="margin:0;max-width:40ch" data-i18n="f_about"></p>
+    </div>
+    <div>
+      <h4 data-i18n="f_nav"></h4>
+      <ul>
+        <li><a href="#about" data-i18n="nav_about"></a></li>
+        <li><a href="#products" data-i18n="nav_products"></a></li>
+        <li><a href="#cert" data-i18n="nav_cert"></a></li>
+        <li><a href="#contacts" data-i18n="nav_contacts"></a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="nav_contacts"></h4>
+      <ul>
+        <li class="v-phone"></li>
+        <li><a href="https://wa.me/77023899264" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li data-i18n="addr"></li>
+        <li data-i18n="hours"></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap f-bottom">© 2026 MAX Telecom Components</div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="window" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="close" type="button" id="mClose" aria-label="Закрыть">✕</button>
+    <div class="window-art"><span class="num" id="mNum"></span><svg id="mIcon"><use href="#i-indoor"/></svg></div>
+    <div class="window-body">
+      <span class="window-kicker" data-i18n="m_kicker"></span>
+      <h3 id="mTitle"></h3>
+      <p id="mDesc"></p>
+      <div class="specs" id="mSpecs"></div>
+      <div class="window-actions">
+        <a class="btn btn-teal" href="#contacts" id="mAsk" data-i18n="m_ask"></a>
+        <div class="pager"><button type="button" id="mPrev" aria-label="Предыдущий раздел">←</button><button type="button" id="mNext" aria-label="Следующий раздел">→</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="close" type="button" id="lbClose" aria-label="Закрыть">✕</button>
+  <img src="cert.jpg" alt="Сертификат официального дилера KOSCAB" width="927" height="1304">
+</div>
+
+<script>
+/* Контакты: замените, когда пришлёте свои */
+const CONTACT = { phone: "+7 702 389 92 64", mail: "sales@вашдомен.kz" };
+
+const T = {
+  ru: {
+    top: "Официальный дилер завода «Костромакабель» (KOSCAB) в Республике Казахстан",
+    nav_about: "О компании", nav_products: "Продукция", nav_cert: "Сертификат", nav_contacts: "Контакты",
+    bar_btn: "Продукция", bar_text: "Оптический кабель и компоненты для сетей связи", bar_badge: "Поставки и работы по всей территории РК",
+    s1_t: "Официальный дилер KOSCAB", s1_s: "Оптический кабель напрямую с завода «Костромакабель» для операторов связи и монтажных организаций Казахстана.",
+    s2_t: "Кабель для любой прокладки", s2_s: "Подвес на опорах, кабельная канализация, грунт, здания и последняя миля FTTH.",
+    s3_t: "Всё для монтажа ВОЛС", s3_s: "Муфты, кроссы, патч-корды, разветвители и инструмент для сварки волокна.",
+    btn_products: "Продукция", btn_contact: "Связаться",
+    products_h: "Продукция", products_sub: "Нажмите на раздел, чтобы открыть описание",
+    about_h: "О компании",
+    about_p: "MAX Telecom Components — официальный дилер KOSCAB в Казахстане. Поставляем оптический кабель и компоненты для строительства и ремонта сетей связи: от магистральных линий до подключения квартир.",
+    adv_h: "Почему MAX", adv1: "Официальный дилер завода", adv2: "Продукция с документами и сертификатами", adv3: "Подбор кабеля под ваш проект", adv4: "Поставки и работы по всей территории Республики Казахстан", adv5: "Кабель и пассивная оптика в одном месте", adv6: "Работаем с юр. лицами и ИП",
+    cert_h: "Сертификат официального дилера",
+    cert_p: "ИП «Шайкенова А.Ж.» — официальный дилер завода «Костромакабель» с правом реализации продукции под торговой маркой KOSCAB (КОС) на территории Республики Казахстан.",
+    cert_reg: "Регистрационный номер", cert_issued: "Дата выдачи", cert_valid: "Действителен до", cert_open: "Открыть сертификат",
+    contacts_h: "Контакты", contacts_sub: "Напишите или позвоните, подберём кабель и подготовим счёт",
+    c_phone: "Телефон", c_mail: "Эл. почта", c_addr: "Адрес", c_hours: "Режим работы",
+    addr: "г. Костанай, ул. Камшат Донебаевой, 66, офис 2", hours: "Пн–Пт, 9:00–18:00",
+    copy: "Скопировать", copied: "Скопировано", wa_write: "Написать в WhatsApp",
+    f_about: "Оптический кабель и компоненты KOSCAB для сетей связи Казахстана.", f_nav: "Разделы",
+    rights: "© 2026 MAX Telecom Components · ИП «Шайкенова А.Ж.», БИН 920113450405",
+    m_kicker: "Раздел продукции", m_ask: "Запросить цену"
+  },
+  kk: {
+    top: "«Костромакабель» (KOSCAB) зауытының Қазақстан Республикасындағы ресми дилері",
+    nav_about: "Компания туралы", nav_products: "Өнімдер", nav_cert: "Сертификат", nav_contacts: "Байланыс",
+    bar_btn: "Өнімдер", bar_text: "Байланыс желілеріне арналған оптикалық кабель және компоненттер", bar_badge: "ҚР бүкіл аумағында жеткізу және жұмыстар",
+    s1_t: "KOSCAB ресми дилері", s1_s: "«Костромакабель» зауытынан тікелей оптикалық кабель — Қазақстанның байланыс операторлары мен монтаждау ұйымдары үшін.",
+    s2_t: "Кез келген төсеуге арналған кабель", s2_s: "Тіректерге ілу, кабель кәрізі, топырақ, ғимараттар және FTTH соңғы мильі.",
+    s3_t: "ТОБЖ монтажына қажеттінің бәрі", s3_s: "Муфталар, кросстар, патч-корлар, тармақтағыштар және талшықты дәнекерлеу құралдары.",
+    btn_products: "Өнімдер", btn_contact: "Хабарласу",
+    products_h: "Өнімдер", products_sub: "Сипаттаманы ашу үшін бөлімді басыңыз",
+    about_h: "Компания туралы",
+    about_p: "MAX Telecom Components — KOSCAB-тың Қазақстандағы ресми дилері. Байланыс желілерін салуға және жөндеуге арналған оптикалық кабель мен компоненттерді жеткіземіз: магистральдық желілерден пәтерлерді қосуға дейін.",
+    adv_h: "Неліктен MAX", adv1: "Зауыттың ресми дилері", adv2: "Құжаттары мен сертификаттары бар өнім", adv3: "Жобаңызға кабель таңдау", adv4: "Қазақстан Республикасының бүкіл аумағында жеткізу және жұмыстар", adv5: "Кабель мен пассивті оптика бір жерде", adv6: "Заңды тұлғалармен және ЖК-мен жұмыс істейміз",
+    cert_h: "Ресми дилер сертификаты",
+    cert_p: "«Шайкенова А.Ж.» ЖК — «Костромакабель» зауытының KOSCAB (КОС) сауда белгісімен өнімдерді Қазақстан Республикасы аумағында өткізу құқығы бар ресми дилері.",
+    cert_reg: "Тіркеу нөмірі", cert_issued: "Берілген күні", cert_valid: "Жарамдылық мерзімі", cert_open: "Сертификатты ашу",
+    contacts_h: "Байланыс", contacts_sub: "Жазыңыз немесе қоңырау шалыңыз — кабель таңдап, шот дайындаймыз",
+    c_phone: "Телефон", c_mail: "Эл. пошта", c_addr: "Мекенжай", c_hours: "Жұмыс уақыты",
+    addr: "Қостанай қ., Қамшат Дөнебаева к-сі, 66, 2-кеңсе", hours: "Дс–Жм, 9:00–18:00",
+    copy: "Көшіру", copied: "Көшірілді", wa_write: "WhatsApp-қа жазу",
+    f_about: "Қазақстанның байланыс желілеріне арналған KOSCAB оптикалық кабелі мен компоненттері.", f_nav: "Бөлімдер",
+    rights: "© 2026 MAX Telecom Components · «Шайкенова А.Ж.» ЖК, БСН 920113450405",
+    m_kicker: "Өнім бөлімі", m_ask: "Бағасын сұрау"
+  },
+  en: {
+    top: "Official dealer of the Kostromakabel (KOSCAB) plant in the Republic of Kazakhstan",
+    nav_about: "About", nav_products: "Products", nav_cert: "Certificate", nav_contacts: "Contacts",
+    bar_btn: "Products", bar_text: "Fiber optic cable and components for telecom networks", bar_badge: "Supply and works across Kazakhstan",
+    s1_t: "Official KOSCAB dealer", s1_s: "Fiber optic cable straight from the Kostromakabel plant for telecom operators and installers in Kazakhstan.",
+    s2_t: "Cable for every installation", s2_s: "Aerial, duct, direct burial, indoor and the FTTH last mile.",
+    s3_t: "Everything for fiber installation", s3_s: "Splice closures, patch panels, patch cords, splitters and fiber splicing tools.",
+    btn_products: "Products", btn_contact: "Contact us",
+    products_h: "Products", products_sub: "Click a category to open its description",
+    about_h: "About us",
+    about_p: "MAX Telecom Components is the official KOSCAB dealer in Kazakhstan. We supply fiber optic cable and components for building and repairing telecom networks, from backbone lines to apartment connections.",
+    adv_h: "Why MAX", adv1: "Official plant dealer", adv2: "Products with documents and certificates", adv3: "Cable selection for your project", adv4: "Supply and works across the entire Republic of Kazakhstan", adv5: "Cable and passive optics in one place", adv6: "We work with companies and sole traders",
+    cert_h: "Official dealer certificate",
+    cert_p: "IE Shaikenova A.Zh. is an official dealer of the Kostromakabel plant, authorized to sell KOSCAB (KOS) branded products in the Republic of Kazakhstan.",
+    cert_reg: "Registration number", cert_issued: "Issued", cert_valid: "Valid until", cert_open: "View certificate",
+    contacts_h: "Contacts", contacts_sub: "Write or call us, we will pick the cable and prepare an invoice",
+    c_phone: "Phone", c_mail: "Email", c_addr: "Address", c_hours: "Working hours",
+    addr: "66 Kamshat Donebayeva St., office 2, Kostanay", hours: "Mon–Fri, 9:00–18:00",
+    copy: "Copy", copied: "Copied", wa_write: "Message on WhatsApp",
+    f_about: "KOSCAB fiber optic cable and components for telecom networks in Kazakhstan.", f_nav: "Sections",
+    rights: "© 2026 MAX Telecom Components · IE Shaikenova A.Zh., BIN 920113450405",
+    m_kicker: "Product category", m_ask: "Request a price"
+  }
+};
+
+const CATS = [
+  ["indoor", { ru: ["Внутриобъектовый кабель","Для прокладки внутри зданий: в лотках, стояках и серверных. Оболочка не распространяет горение.","Симплекс, дуплекс, breakout","Оболочка LSZH"], kk: ["Ғимарат ішіндегі кабель","Ғимараттар ішінде төсеуге: науаларда, тіреулерде және серверлік бөлмелерде. Қабығы жануды таратпайды.","Симплекс, дуплекс, breakout","LSZH қабығы"], en: ["Indoor cable","For runs inside buildings: trays, risers and server rooms. Flame-retardant sheath.","Simplex, duplex, breakout","LSZH sheath"] }],
+  ["dist", { ru: ["Распределительный кабель","Для разводки по этажам и между зданиями. Есть универсальные варианты для улицы и помещений.","Стояки и межэтажная разводка","Внутренний и внешний"], kk: ["Тарату кабелі","Қабаттар бойынша және ғимараттар арасында таратуға. Көше мен үй-жайға арналған әмбебап нұсқалары бар.","Тіреулер мен қабатаралық тарату","Ішкі және сыртқы"], en: ["Distribution cable","For floor-to-floor and building-to-building distribution. Universal indoor/outdoor versions available.","Risers and floor distribution","Indoor and outdoor"] }],
+  ["ftth", { ru: ["Кабель FTTH","Для подключения домов и квартир по оптике. Усиление стеклопрутками, проволокой или внешним силовым элементом.","Сети GPON / FTTx","Стеклопрутки или проволока"], kk: ["FTTH кабелі","Үйлер мен пәтерлерді оптика арқылы қосуға. Шыны өзекшелермен, сыммен немесе сыртқы күш элементімен күшейтілген.","GPON / FTTx желілері","Шыны өзекше немесе сым"], en: ["FTTH cable","For connecting homes and apartments over fiber. Reinforced with glass rods, steel wire or an external strength member.","GPON / FTTx networks","Glass rods or steel wire"] }],
+  ["drop", { ru: ["Дроп-кабель","Абонентский кабель последней мили: плоский, круглый и «восьмёрка» с несущим тросом.","1–4 волокна","Плоский, круглый, «восьмёрка»"], kk: ["Дроп-кабель","Соңғы мильдің абоненттік кабелі: жалпақ, дөңгелек және көтергіш арқанды «сегіздік».","1–4 талшық","Жалпақ, дөңгелек, «сегіздік»"], en: ["Drop cable","Last-mile subscriber cable: flat, round and figure-8 with a messenger wire.","1–4 fibers","Flat, round, figure-8"] }],
+  ["aerial", { ru: ["Подвесной самонесущий","Для подвеса на опорах связи и ЛЭП. Арамидные нити или стеклонити держат нагрузку без троса.","До 48 волокон и выше","Нагрузка от 2,7 кН"], kk: ["Аспалы өздігінен көтерілетін","Байланыс және ЭБЖ тіректеріне ілуге. Арамид немесе шыны жіптер жүктемені арқансыз көтереді.","48 талшыққа дейін және одан көп","2,7 кН-нан бастап жүктеме"], en: ["Self-supporting aerial","For hanging on telecom and power-line poles. Aramid or glass yarn carries the load without a messenger.","Up to 48 fibers and more","Tensile load from 2.7 kN"] }],
+  ["duct", { ru: ["В канализацию","Для кабельной канализации и труб, в том числе задувкой. Броня из стальной ленты или стеклопрутков.","Многомодульный и ЦТ","Броня: лента, стеклопрутки"], kk: ["Кәрізге арналған","Кабель кәрізі мен құбырларға, соның ішінде үрлеп төсеуге. Болат таспа немесе шыны өзекше сауыты.","Көп модульді және орталық түтікті","Сауыт: таспа, шыны өзекше"], en: ["Duct cable","For cable ducts and pipes, including air-blown installation. Steel tape or glass-rod armor.","Multi-tube and central tube","Armor: tape or glass rods"] }],
+  ["ground", { ru: ["В грунт","Для прямой прокладки в траншею. Броня из стальной проволоки или стеклопрутков защищает от нагрузок и грызунов.","Центральная трубка","Броня: проволока, стеклопрутки"], kk: ["Топыраққа арналған","Траншеяға тікелей төсеуге. Болат сым немесе шыны өзекше сауыты жүктемеден және кеміргіштерден қорғайды.","Орталық түтік","Сауыт: сым, шыны өзекше"], en: ["Direct burial","For laying straight into a trench. Steel wire or glass-rod armor protects against loads and rodents.","Central tube","Armor: wire or glass rods"] }],
+  ["closure", { ru: ["Оптические муфты","Проходные, тупиковые и разветвительные муфты для защиты мест сварки, а также абонентские боксы.","Проходные и тупиковые","Абонентские боксы"], kk: ["Оптикалық муфталар","Дәнекерлеу орындарын қорғауға арналған өтпелі, тұйық және тармақтау муфталары, сондай-ақ абоненттік қораптар.","Өтпелі және тұйық","Абоненттік қораптар"], en: ["Splice closures","Inline, dead-end and branch closures that protect splices, plus subscriber boxes.","Inline and dead-end","Subscriber boxes"] }],
+  ["clamp", { ru: ["Арматура и крепёж","Натяжные и поддерживающие зажимы, бандажная лента, скрепы и кронштейны для подвеса кабеля.","Зажимы натяжные и поддерживающие","Бандажная лента и скрепы"], kk: ["Арматура және бекіткіштер","Кабельді ілуге арналған керу және ұстау қысқыштары, бандаж таспасы, қапсырмалар мен кронштейндер.","Керу және ұстау қысқыштары","Бандаж таспасы мен қапсырмалар"], en: ["Hardware and fixings","Tension and suspension clamps, banding strap, buckles and brackets for hanging cable.","Tension and suspension clamps","Banding strap and buckles"] }],
+  ["splice", { ru: ["Сварка оптоволокна","Сварочные аппараты, скалыватели, стрипперы и электроды для монтажа и ремонта линий.","Сварочные аппараты","Скалыватели и стрипперы"], kk: ["Оптоталшықты дәнекерлеу","Желілерді монтаждауға және жөндеуге арналған дәнекерлеу аппараттары, кескіштер, стрипперлер және электродтар.","Дәнекерлеу аппараттары","Кескіштер мен стрипперлер"], en: ["Fiber splicing","Fusion splicers, cleavers, strippers and electrodes for building and repairing lines.","Fusion splicers","Cleavers and strippers"] }],
+  ["patch", { ru: ["Патч-корды и пигтейлы","Соединительные шнуры и пигтейлы SC, LC, FC в одномодовом и многомодовом исполнении.","SC, LC, FC · UPC / APC","Одномод и многомод"], kk: ["Патч-корлар мен пигтейлдер","Бір модалы және көп модалы SC, LC, FC жалғағыш баулары мен пигтейлдер.","SC, LC, FC · UPC / APC","Бір модалы және көп модалы"], en: ["Patch cords and pigtails","SC, LC and FC patch cords and pigtails, single-mode and multimode.","SC, LC, FC · UPC / APC","Single-mode and multimode"] }],
+  ["split", { ru: ["Оптические разветвители","Планарные PLC и сварные FBT разветвители для пассивных сетей GPON.","PLC 1×2 … 1×64","Сварные FBT"], kk: ["Оптикалық тармақтағыштар","Пассивті GPON желілеріне арналған жазық PLC және дәнекерленген FBT тармақтағыштары.","PLC 1×2 … 1×64","Дәнекерленген FBT"], en: ["Optical splitters","Planar PLC and fused FBT splitters for passive GPON networks.","PLC 1×2 … 1×64","Fused FBT"] }],
+  ["odf", { ru: ["Оптические кроссы","Стоечные и настенные кроссы для ввода и распределения волокон в узлах связи.","Стоечные 19″, 1U–4U","Настенные"], kk: ["Оптикалық кросстар","Байланыс тораптарында талшықтарды енгізуге және таратуға арналған тіреуіш және қабырға кросстары.","19″ тіреуіш, 1U–4U","Қабырғалық"], en: ["Fiber patch panels","Rack and wall-mount panels for terminating and distributing fibers at network nodes.","19″ rack, 1U–4U","Wall-mount"] }],
+  ["copper", { ru: ["Медные компоненты","Витая пара, коннекторы RJ45, патч-корды, патч-панели и розетки для СКС.","Витая пара кат. 5e / 6","RJ45, патч-панели"], kk: ["Мыс компоненттер","ҚКЖ-ға арналған есілген жұп, RJ45 коннекторлары, патч-корлар, патч-панельдер мен розеткалар.","5e / 6 санатты есілген жұп","RJ45, патч-панельдер"], en: ["Copper components","Twisted pair, RJ45 connectors, patch cords, patch panels and outlets for structured cabling.","Cat 5e / 6 twisted pair","RJ45, patch panels"] }],
+];
+
+const $ = (id) => document.getElementById(id);
+let lang = "kk";
+try { const s = localStorage.getItem("max-lang"); if (s && T[s]) lang = s; } catch (e) {}
+
+function applyLang(l) {
+  lang = l; const d = T[l];
+  document.documentElement.lang = l === "kk" ? "kk" : l;
+  document.querySelectorAll("[data-i18n]").forEach((el) => { const v = d[el.dataset.i18n]; if (v != null) el.textContent = v; });
+  document.querySelectorAll("[data-lang]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === l)));
+  document.querySelectorAll(".v-phone").forEach((el) => (el.textContent = CONTACT.phone));
+  document.querySelectorAll(".v-mail").forEach((el) => (el.textContent = CONTACT.mail));
+  $("grid").innerHTML = CATS.map(([id, t], k) => `<button class="card" type="button" data-k="${k}"><svg><use href="#i-${id}"/></svg><span>${t[l][0]}</span></button>`).join("");
+  if (!$("modal").hidden) fillModal(cur);
+  try { localStorage.setItem("max-lang", l); } catch (e) {}
+}
+document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.lang)));
+
+/* большое окно раздела */
+let cur = 0, lastFocus = null;
+function fillModal(k) {
+  cur = (k + CATS.length) % CATS.length; const [id, t] = CATS[cur]; const v = t[lang];
+  $("mNum").textContent = String(cur + 1).padStart(2, "0") + " / " + CATS.length;
+  $("mIcon").innerHTML = `<use href="#i-${id}"/>`;
+  $("mTitle").textContent = v[0]; $("mDesc").textContent = v[1];
+  $("mSpecs").innerHTML = v.slice(2).map((s) => `<span>${s}</span>`).join("");
+}
+function openModal(k) { lastFocus = document.activeElement; fillModal(k); $("modal").hidden = false; document.body.style.overflow = "hidden"; $("mClose").focus(); }
+function closeModal() { $("modal").hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
+$("grid").addEventListener("click", (e) => { const c = e.target.closest(".card"); if (c) openModal(+c.dataset.k); });
+$("mClose").onclick = closeModal; $("mPrev").onclick = () => fillModal(cur - 1); $("mNext").onclick = () => fillModal(cur + 1);
+$("mAsk").addEventListener("click", closeModal);
+$("modal").addEventListener("click", (e) => { if (e.target.id === "modal") closeModal(); });
+
+/* сертификат */
+$("openCert").onclick = () => { $("lightbox").hidden = false; document.body.style.overflow = "hidden"; };
+const closeLb = () => { $("lightbox").hidden = true; document.body.style.overflow = ""; };
+$("lbClose").onclick = closeLb; $("lightbox").addEventListener("click", (e) => { if (e.target.id === "lightbox") closeLb(); });
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { if (!$("modal").hidden) closeModal(); if (!$("lightbox").hidden) closeLb(); }
+  if (!$("modal").hidden && e.key === "ArrowRight") fillModal(cur + 1);
+  if (!$("modal").hidden && e.key === "ArrowLeft") fillModal(cur - 1);
+});
+
+/* слайдер */
+const slides = [...document.querySelectorAll(".slide")];
+let si = 0, timer = 0;
+$("dots").innerHTML = slides.map((_, k) => `<button type="button" aria-label="Слайд ${k + 1}"></button>`).join("");
+const dots = [...$("dots").children];
+function show(k) {
+  si = (k + slides.length) % slides.length;
+  slides.forEach((s, n) => { s.classList.toggle("is-active", n === si); s.setAttribute("aria-hidden", String(n !== si)); });
+  dots.forEach((d, n) => d.setAttribute("aria-current", String(n === si)));
+}
+function auto() { clearInterval(timer); if (!matchMedia("(prefers-reduced-motion: reduce)").matches) timer = setInterval(() => show(si + 1), 6000); }
+dots.forEach((d, n) => d.addEventListener("click", () => { show(n); auto(); }));
+show(0); auto();
+
+/* мобильное меню */
+$("burger").addEventListener("click", () => { const o = $("burger").getAttribute("aria-expanded") !== "true"; $("burger").setAttribute("aria-expanded", String(o)); $("mnav").hidden = !o; });
+$("mnav").addEventListener("click", (e) => { if (e.target.closest("a")) { $("mnav").hidden = true; $("burger").setAttribute("aria-expanded", "false"); } });
+
+/* копирование контактов */
+document.querySelectorAll(".copy[data-copy]").forEach((b) => b.addEventListener("click", () => {
+  const el = $(b.dataset.copy), txt = el.textContent.trim();
+  const ok = () => { b.textContent = T[lang].copied; setTimeout(() => (b.textContent = T[lang].copy), 1500); };
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, sel); else sel();
+}));
+
+applyLang(lang);
+</script>
+</body>
+</html>
