@@ -154,6 +154,27 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
 .window-body p { margin: 0; font-size: 15px; color: var(--text); max-width: 52ch; }
 .specs { display: flex; flex-wrap: wrap; gap: 8px; }
 .specs span { padding: 7px 12px; border-radius: 4px; background: var(--soft); color: var(--teal); font-size: 12px; font-weight: 600; }
+.stock { border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 8px; min-width: 0; }
+.stock-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
+.stock-h { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); }
+.stock-upd { font-size: 11px; color: var(--text); }
+.stock-upd b { color: #b45309; font-weight: 700; margin-right: 6px; }
+.stock-list { list-style: none; margin: 0; padding: 0; max-height: 236px; overflow-y: auto; border: 1px solid var(--line); border-radius: 6px; }
+.stock-list li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--line); font-size: 13px; }
+.stock-list li:last-child { border-bottom: 0; }
+.st-name { color: var(--navy); font-weight: 600; min-width: 0; overflow-wrap: anywhere; }
+.st-name small { display: block; font-weight: 500; color: var(--text); font-size: 11px; }
+.st-pill { font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 999px; white-space: nowrap; }
+.st-pill.in { background: #e3f6ea; color: #17733b; }
+.st-pill.low { background: #fff3dc; color: #a15c07; }
+.st-pill.order { background: #eef1f4; color: #55606c; }
+.st-price { font-weight: 700; color: var(--navy); white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; min-width: 84px; }
+.st-price small { font-weight: 500; color: var(--text); font-size: 11px; }
+@media (max-width: 520px) {
+  .stock-list li { grid-template-columns: minmax(0, 1fr) auto; }
+  .st-pill { grid-column: 1; justify-self: start; }
+  .st-price { grid-column: 2; grid-row: 1 / span 2; }
+}
 .window-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 8px; }
 .pager { margin-left: auto; display: flex; gap: 6px; }
 .pager button, .close { width: 40px; height: 40px; border-radius: 4px; border: 1px solid var(--line); background: #fff; color: var(--navy); cursor: pointer; font-size: 16px; }
@@ -477,6 +498,10 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
       <h3 id="mTitle"></h3>
       <p id="mDesc"></p>
       <div class="specs" id="mSpecs"></div>
+      <div class="stock" id="mStock" hidden>
+        <div class="stock-head"><span class="stock-h" id="stH"></span><span class="stock-upd" id="stUpd"></span></div>
+        <ul class="stock-list" id="stList"></ul>
+      </div>
       <div class="window-actions">
         <a class="btn btn-teal" href="#contacts" id="mAsk" data-mxt="m_ask">Бағасын сұрау</a>
         <div class="pager"><button type="button" id="mPrev" aria-label="Предыдущий раздел">←</button><button type="button" id="mNext" aria-label="Следующий раздел">→</button></div>
@@ -514,6 +539,7 @@ const T = {
     f_about: "Оптический кабель и компоненты для сетей связи Казахстана.", f_nav: "Разделы",
     rights: "© 2026 MAX Telecom Components · ИП «Шайкенова А.Ж.», БИН 920113450405",
     m_kicker: "Раздел продукции", m_ask: "Запросить цену",
+    st_h: "Наличие и цены", st_upd: "Обновлено", st_in: "В наличии", st_low: "Мало", st_order: "Под заказ", st_req: "по запросу", st_demo: "Демо-данные", st_per: "за",
     partners_h: "Партнёры и документы",
     p1: "Официальный дилер · сертификат до 30.09.2027",
     p2: "Официальный партнёр · письмо от 01.01.2026"
@@ -537,6 +563,7 @@ const T = {
     f_about: "Қазақстанның байланыс желілеріне арналған оптикалық кабель мен компоненттер.", f_nav: "Бөлімдер",
     rights: "© 2026 MAX Telecom Components · «Шайкенова А.Ж.» ЖК, БСН 920113450405",
     m_kicker: "Өнім бөлімі", m_ask: "Бағасын сұрау",
+    st_h: "Қолда бары мен бағалар", st_upd: "Жаңартылды", st_in: "Қоймада бар", st_low: "Аз қалды", st_order: "Тапсырыспен", st_req: "сұрау бойынша", st_demo: "Демо-деректер", st_per: "бірлігі",
     partners_h: "Серіктестер мен құжаттар",
     p1: "Ресми дилер · сертификат 30.09.2027 дейін",
     p2: "Ресми серіктес · 01.01.2026 хат"
@@ -560,6 +587,7 @@ const T = {
     f_about: "Fiber optic cable and components for telecom networks in Kazakhstan.", f_nav: "Sections",
     rights: "© 2026 MAX Telecom Components · IE Shaikenova A.Zh., BIN 920113450405",
     m_kicker: "Product category", m_ask: "Request a price",
+    st_h: "Availability and prices", st_upd: "Updated", st_in: "In stock", st_low: "Low stock", st_order: "On order", st_req: "on request", st_demo: "Demo data", st_per: "per",
     partners_h: "Partners and documents",
     p1: "Official dealer · certificate valid to 30.09.2027",
     p2: "Official partner · letter of 01.01.2026"
@@ -608,7 +636,49 @@ function fillModal(k) {
   $("mIcon").innerHTML = `<use href="#i-${id}"/>`;
   $("mTitle").textContent = v[0]; $("mDesc").textContent = v[1];
   $("mSpecs").innerHTML = v.slice(2).map((s) => `<span>${s}</span>`).join("");
+  renderStock(id);
 }
+
+/* наличие и цены из 1С (через /api/stock); пока 1С не подключена — блок скрыт */
+let STOCK = null;
+const escH = (x) => String(x).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+function renderStock(catId) {
+  const box = $("mStock"), d = T[lang];
+  const rows = STOCK && STOCK.items ? STOCK.items.filter((i) => i.cat === catId) : [];
+  if (!rows.length) { box.hidden = true; return; }
+  const money = new Intl.NumberFormat(lang === "en" ? "en-US" : "ru-RU", { maximumFractionDigits: 2 });
+  const when = new Date(STOCK.updated);
+  $("stH").textContent = d.st_h;
+  $("stUpd").innerHTML = (STOCK.demo ? `<b>${d.st_demo}</b>` : "") + escH(d.st_upd + " " + when.toLocaleString(lang === "en" ? "en-GB" : "ru-RU", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }));
+  $("stList").innerHTML = rows.map((i) => `<li>
+      <span class="st-name">${escH(i.name)}${i.sku ? `<small>${escH(i.sku)}</small>` : ""}</span>
+      <span class="st-pill ${i.status}">${escH(d["st_" + i.status] || "")}</span>
+      <span class="st-price">${i.price ? `${money.format(i.price)} ₸${i.unit ? `<small> / ${escH(i.unit)}</small>` : ""}` : `<small>${escH(d.st_req)}</small>`}</span>
+    </li>`).join("");
+  box.hidden = false;
+}
+const DEMO_STOCK = { demo: true, updated: new Date().toISOString(), items: [
+  ["ОК-0104","Кабель оптический самонесущий 4 волокна, 2,7 кН","aerial","м","in",165],["ОК-0108","Кабель оптический самонесущий 8 волокон, 2,7 кН","aerial","м","in",195],["ОК-0148","Кабель оптический самонесущий 48 волокон, 8 кН","aerial","м","low",520],
+  ["ОК-1001","Дроп-кабель FTTH плоский, 1 волокно","drop","м","in",42],["ОК-1104","Дроп-кабель «восьмёрка» с тросом, 4 волокна","drop","м","order",96],
+  ["ОК-2016","Кабель в канализацию, броня стальная лента, 16 волокон","duct","м","in",410],["ОК-3008","Кабель в грунт, броня проволока, 8 волокон","ground","м","low",780],
+  ["МФ-0048","Муфта оптическая проходная, до 48 сварок","closure","шт","in",14900],["МФ-1008","Бокс абонентский на 8 портов SC","closure","шт","order",6900],
+  ["ПК-0103","Патч-корд SC/UPC–SC/UPC, SM, 3 м","patch","шт","in",1150],["ПК-0315","Пигтейл SC/APC, SM, 1,5 м","patch","шт","in",480],
+  ["СП-0108","Сплиттер PLC 1×8, SC/APC","split","шт","low",8900],["КР-1U24","Кросс оптический 1U, 24 порта SC","odf","шт","in",31800],
+  ["АР-0101","Зажим натяжной клиновой 6–9 мм","clamp","шт","in",1350],["ИН-0501","Скалыватель оптических волокон","splice","шт","order",null],
+  ["МД-0505","Витая пара U/UTP кат. 5e, 305 м","copper","бухта","in",43500]
+].map(([sku, name, cat, unit, status, price]) => ({ sku, name, cat, unit, status, price })) };
+(async () => {
+  if (new URLSearchParams(location.search).has("demo")) { STOCK = DEMO_STOCK; return; }
+  if (!/^https?:$/.test(location.protocol)) return;
+  try {
+    const r = await fetch("/api/stock", { headers: { Accept: "application/json" } });
+    const ct = r.headers.get("content-type") || "";
+    if (!r.ok || !ct.includes("json")) return;
+    const data = await r.json();
+    if (data && data.configured && Array.isArray(data.items) && data.items.length) STOCK = data;
+  } catch (e) { /* 1С не подключена или недоступна — блок наличия просто не показываем */ }
+  if (!$("modal").hidden) renderStock(CATS[cur][0]);
+})();
 function openModal(k) { lastFocus = document.activeElement; fillModal(k); $("modal").hidden = false; document.body.style.overflow = "hidden"; $("mClose").focus(); }
 function closeModal() { $("modal").hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
 $("grid").addEventListener("click", (e) => { const c = e.target.closest(".card"); if (c) openModal(+c.dataset.k); });
