@@ -188,6 +188,20 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
   .pager { margin-left: 0; }
 }
 
+/* catalog from 1C */
+.catalog { background: #fff; border-top: 1px solid var(--line); }
+.cat-tools { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 28px; }
+.cat-tools input { flex: 1 1 280px; min-width: 0; height: 48px; padding: 0 18px; border: 1px solid var(--line); border-radius: 6px; font: 500 15px var(--font); color: var(--navy); background: #fff; }
+.cat-tools input:focus { outline: none; border-color: var(--teal-2); box-shadow: 0 0 0 3px rgba(10,111,145,.12); }
+.cat-count { font-size: 13px; color: var(--text); }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 16px; }
+.cat-chips button { border: 1px solid var(--line); background: #fff; color: var(--navy); border-radius: 999px; padding: 7px 13px; font: 600 12px var(--font); cursor: pointer; }
+.cat-chips button[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+.cat-list { max-height: 560px; }
+.cat-list .st-name small b { color: var(--teal-2); font-weight: 600; margin-right: 6px; }
+.cat-upd { margin-top: 10px; text-align: right; }
+.cat-empty { padding: 28px 12px; text-align: center; color: var(--text); font-size: 14px; display: block !important; }
+
 /* about */
 .about { background: var(--soft); }
 .about.section { padding-block: 88px; }
@@ -409,6 +423,20 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
     </div>
   </section>
 
+  <section class="section catalog" id="catalog" hidden>
+    <div class="wrap">
+      <h2 class="section-title center" id="catH"></h2>
+      <p class="sub center" id="catSub"></p>
+      <div class="cat-tools">
+        <input id="catQ" type="search" autocomplete="off">
+        <span class="cat-count" id="catCount"></span>
+      </div>
+      <div class="cat-chips" id="catChips" role="group"></div>
+      <ul class="stock-list cat-list" id="catList"></ul>
+      <div class="stock-upd cat-upd" id="catUpd"></div>
+    </div>
+  </section>
+
   <section class="section about" id="about">
     <div class="wrap about-center">
       <span class="about-kicker" data-mxt="about_h">Компания туралы</span>
@@ -540,6 +568,7 @@ const T = {
     rights: "© 2026 MAX Telecom Components · ИП «Шайкенова А.Ж.», БИН 920113450405",
     m_kicker: "Раздел продукции", m_ask: "Запросить цену",
     st_h: "Наличие и цены", st_upd: "Обновлено", st_in: "В наличии", st_low: "Мало", st_order: "Под заказ", st_req: "по запросу", st_demo: "Демо-данные", st_per: "за",
+    cat_h: "Каталог и наличие", cat_sub: "Все позиции со склада. Данные обновляются автоматически из учётной системы.", cat_search: "Поиск по названию или артикулу", cat_all: "Все", cat_other: "Другое", cat_empty: "Ничего не найдено", cat_pos: "позиций",
     partners_h: "Партнёры и документы",
     p1: "Официальный дилер · сертификат до 30.09.2027",
     p2: "Официальный партнёр · письмо от 01.01.2026"
@@ -564,6 +593,7 @@ const T = {
     rights: "© 2026 MAX Telecom Components · «Шайкенова А.Ж.» ЖК, БСН 920113450405",
     m_kicker: "Өнім бөлімі", m_ask: "Бағасын сұрау",
     st_h: "Қолда бары мен бағалар", st_upd: "Жаңартылды", st_in: "Қоймада бар", st_low: "Аз қалды", st_order: "Тапсырыспен", st_req: "сұрау бойынша", st_demo: "Демо-деректер", st_per: "бірлігі",
+    cat_h: "Каталог және қолда бары", cat_sub: "Қоймадағы барлық позициялар. Деректер есепке алу жүйесінен автоматты түрде жаңартылады.", cat_search: "Атауы немесе артикулы бойынша іздеу", cat_all: "Барлығы", cat_other: "Басқа", cat_empty: "Ештеңе табылмады", cat_pos: "позиция",
     partners_h: "Серіктестер мен құжаттар",
     p1: "Ресми дилер · сертификат 30.09.2027 дейін",
     p2: "Ресми серіктес · 01.01.2026 хат"
@@ -588,6 +618,7 @@ const T = {
     rights: "© 2026 MAX Telecom Components · IE Shaikenova A.Zh., BIN 920113450405",
     m_kicker: "Product category", m_ask: "Request a price",
     st_h: "Availability and prices", st_upd: "Updated", st_in: "In stock", st_low: "Low stock", st_order: "On order", st_req: "on request", st_demo: "Demo data", st_per: "per",
+    cat_h: "Catalog and availability", cat_sub: "All items in stock. Data updates automatically from our accounting system.", cat_search: "Search by name or code", cat_all: "All", cat_other: "Other", cat_empty: "Nothing found", cat_pos: "items",
     partners_h: "Partners and documents",
     p1: "Official dealer · certificate valid to 30.09.2027",
     p2: "Official partner · letter of 01.01.2026"
@@ -624,6 +655,7 @@ function applyLang(l) {
   document.querySelectorAll(".v-mail").forEach((el) => (el.textContent = CONTACT.mail));
   $("grid").innerHTML = CATS.map(([id, t], k) => `<button class="card" type="button" data-k="${k}"><svg><use href="#i-${id}"/></svg><span>${t[l][0]}</span></button>`).join("");
   if (!$("modal").hidden) fillModal(cur);
+  if (typeof renderCatalog === "function" && STOCK) renderCatalog();
   try { localStorage.setItem("max-lang", l); } catch (e) {}
 }
 document.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => applyLang(b.dataset.lang)));
@@ -665,10 +697,11 @@ const DEMO_STOCK = { demo: true, updated: new Date().toISOString(), items: [
   ["ПК-0103","Патч-корд SC/UPC–SC/UPC, SM, 3 м","patch","шт","in",1150],["ПК-0315","Пигтейл SC/APC, SM, 1,5 м","patch","шт","in",480],
   ["СП-0108","Сплиттер PLC 1×8, SC/APC","split","шт","low",8900],["КР-1U24","Кросс оптический 1U, 24 порта SC","odf","шт","in",31800],
   ["АР-0101","Зажим натяжной клиновой 6–9 мм","clamp","шт","in",1350],["ИН-0501","Скалыватель оптических волокон","splice","шт","order",null],
-  ["МД-0505","Витая пара U/UTP кат. 5e, 305 м","copper","бухта","in",43500]
-].map(([sku, name, cat, unit, status, price]) => ({ sku, name, cat, unit, status, price })) };
+  ["МД-0505","Витая пара U/UTP кат. 5e, 305 м","copper","бухта","in",43500],
+  ["НВ-0001","Рефлектометр оптический компактный","","шт","low",385000,"Измерительные приборы"]
+].map(([sku, name, cat, unit, status, price, group]) => ({ sku, name, cat: cat || null, group: group || "", unit, status, price })) };
 (async () => {
-  if (new URLSearchParams(location.search).has("demo")) { STOCK = DEMO_STOCK; return; }
+  if (new URLSearchParams(location.search).has("demo")) { STOCK = DEMO_STOCK; setTimeout(renderCatalog); return; }
   if (!/^https?:$/.test(location.protocol)) return;
   try {
     const r = await fetch("/api/stock", { headers: { Accept: "application/json" } });
@@ -678,7 +711,38 @@ const DEMO_STOCK = { demo: true, updated: new Date().toISOString(), items: [
     if (data && data.configured && Array.isArray(data.items) && data.items.length) STOCK = data;
   } catch (e) { /* 1С не подключена или недоступна — блок наличия просто не показываем */ }
   if (!$("modal").hidden) renderStock(CATS[cur][0]);
+  renderCatalog();
 })();
+
+let catFilter = "";
+function catLabel(i) {
+  const c = CATS.find(([id]) => id === i.cat);
+  return c ? c[1][lang][0] : (i.group || T[lang].cat_other);
+}
+function renderCatalog() {
+  const sec = $("catalog");
+  if (!STOCK || !STOCK.items || !STOCK.items.length) { sec.hidden = true; return; }
+  const d = T[lang];
+  $("catH").textContent = d.cat_h; $("catSub").textContent = d.cat_sub; $("catQ").placeholder = d.cat_search;
+  $("catQ").setAttribute("aria-label", d.cat_search);
+  const labels = [...new Set(STOCK.items.map(catLabel))];
+  if (catFilter && !labels.includes(catFilter)) catFilter = "";
+  $("catChips").innerHTML = [["", d.cat_all], ...labels.map((l) => [l, l])]
+    .map(([v, t]) => `<button type="button" data-v="${escH(v)}" aria-pressed="${v === catFilter}">${escH(t)}</button>`).join("");
+  const q = $("catQ").value.trim().toLowerCase();
+  const rows = STOCK.items.filter((i) => (!catFilter || catLabel(i) === catFilter) && (!q || (i.name + " " + (i.sku || "")).toLowerCase().includes(q)));
+  const money = new Intl.NumberFormat(lang === "en" ? "en-US" : "ru-RU", { maximumFractionDigits: 2 });
+  $("catList").innerHTML = rows.length ? rows.map((i) => `<li>
+      <span class="st-name">${escH(i.name)}<small>${i.sku ? `<b>${escH(i.sku)}</b>` : ""}${escH(catLabel(i))}</small></span>
+      <span class="st-pill ${i.status}">${escH(d["st_" + i.status] || "")}</span>
+      <span class="st-price">${i.price ? `${money.format(i.price)} ₸${i.unit ? `<small> / ${escH(i.unit)}</small>` : ""}` : `<small>${escH(d.st_req)}</small>`}</span>
+    </li>`).join("") : `<li class="cat-empty">${escH(d.cat_empty)}</li>`;
+  $("catCount").textContent = `${rows.length} ${d.cat_pos}`;
+  $("catUpd").innerHTML = (STOCK.demo ? `<b>${d.st_demo}</b>` : "") + escH(d.st_upd + " " + new Date(STOCK.updated).toLocaleString(lang === "en" ? "en-GB" : "ru-RU", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }));
+  sec.hidden = false;
+}
+$("catQ").addEventListener("input", renderCatalog);
+$("catChips").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; catFilter = b.dataset.v; renderCatalog(); });
 function openModal(k) { lastFocus = document.activeElement; fillModal(k); $("modal").hidden = false; document.body.style.overflow = "hidden"; $("mClose").focus(); }
 function closeModal() { $("modal").hidden = true; document.body.style.overflow = ""; if (lastFocus) lastFocus.focus(); }
 $("grid").addEventListener("click", (e) => { const c = e.target.closest(".card"); if (c) openModal(+c.dataset.k); });

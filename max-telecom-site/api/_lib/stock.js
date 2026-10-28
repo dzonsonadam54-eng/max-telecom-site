@@ -8,7 +8,7 @@
 //           /api/stock-upload; we store the already-sanitised result in Upstash Redis.
 //
 // Raw item (what 1C provides):  { sku, name, group, unit, qty, price }
-// Public item (what the site sees): { sku, name, cat, unit, status, price }
+// Public item (what the site sees): { sku, name, cat, group, unit, status, price }
 // Exact quantities never leave the server.
 
 const config = require("./config.json");
@@ -41,10 +41,13 @@ function toPublic(raw) {
   for (const r of raw.items || []) {
     if (!r || !r.name) continue;
     const price = Number(r.price);
+    // Visibility rule the shop owner controls from 1C: an item is on the site only if it has a retail price.
+    if (config.requirePrice && !(price > 0)) continue;
     items.push({
       sku: String(r.sku || "").slice(0, 40),
       name: String(r.name).slice(0, 200),
       cat: categoryFor(r.name, r.group),
+      group: String(r.group || "").slice(0, 80),
       unit: String(r.unit || "").slice(0, 12),
       status: statusFor(r.qty, r.unit),
       price: Number.isFinite(price) && price > 0 ? Math.round(price * 100) / 100 : null,
@@ -113,7 +116,8 @@ async function pullFromOData() {
   const whCond = env.ODATA_WAREHOUSE_KEY ? `Condition='Склад_Key eq guid'${env.ODATA_WAREHOUSE_KEY}''` : "";
 
   const [nomenclature, units, balance] = await Promise.all([
-    odataGet("Catalog_Номенклатура?$select=Ref_Key,Description,Артикул,Parent_Key,IsFolder,DeletionMark,ЕдиницаИзмерения_Key"),
+    odataGet("Catalog_Номенклатура?$select=Ref_Key,Description,Артикул,Parent_Key,IsFolder,DeletionMark,ЕдиницаИзмерения_Key,ТипНоменклатуры")
+      .catch(() => odataGet("Catalog_Номенклатура?$select=Ref_Key,Description,Артикул,Parent_Key,IsFolder,DeletionMark,ЕдиницаИзмерения_Key")),
     odataGet(`${unitsCatalog}?$select=Ref_Key,Description`).catch(() => []),
     odataGet(`${stockReg}/Balance(${whCond})`),
   ]);
@@ -147,6 +151,7 @@ async function pullFromOData() {
 
   const items = nomenclature
     .filter((n) => !n.IsFolder && !n.DeletionMark)
+    .filter((n) => !n.ТипНоменклатуры || n.ТипНоменклатуры === "Товар") // goods only, no services
     .map((n) => ({
       sku: n.Артикул || "",
       name: n.Description,
