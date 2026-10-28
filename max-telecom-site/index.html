@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MAX Telecom Components — KOSCAB ресми дилері</title>
-<meta name="description" content="MAX Telecom Components — «Костромакабель» (KOSCAB) зауытының Қазақстандағы ресми дилері. Оптикалық кабель және байланыс желілеріне арналған компоненттер. Официальный дилер KOSCAB в Казахстане.">
+<title>MAX Telecom Components — оптический кабель и компоненты ВОЛС, Костанай</title>
+<meta name="description" content="MAX Telecom Components — оптический кабель и компоненты для сетей связи. Костанай, поставки по всей Республике Казахстан. Байланыс желілеріне арналған оптикалық кабель.">
 <meta property="og:title" content="MAX Telecom Components">
-<meta property="og:description" content="Официальный дилер KOSCAB в Казахстане. Оптический кабель и компоненты для сетей связи.">
+<meta property="og:description" content="Оптический кабель и компоненты для сетей связи. Костанай, поставки по всему Казахстану.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/logo-max-dark.png">
 <meta name="theme-color" content="#065874">
@@ -196,6 +196,18 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
 @media (max-width: 860px) { .cert-grid { grid-template-columns: 1fr; } .cert-img { max-width: 320px; } }
 @media (max-width: 560px) { .facts { grid-template-columns: 1fr; } }
 
+/* partners (deliberately quiet) */
+.partners { padding-block: 36px 40px; border-top: 1px solid var(--line); }
+.partners-h { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text); margin-bottom: 16px; }
+.p-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+.p-doc { display: flex; align-items: center; gap: 14px; padding: 10px 18px 10px 10px; background: #fff; border: 1px solid var(--line); border-radius: 6px;
+  cursor: pointer; text-align: left; color: var(--navy); font-family: inherit; transition: border-color .2s; min-width: 0; max-width: 100%; }
+.p-doc:hover { border-color: var(--teal-2); }
+.p-doc img { width: 44px; height: auto; border: 1px solid var(--line); border-radius: 2px; flex: none; }
+.p-doc span { display: grid; gap: 2px; min-width: 0; }
+.p-doc strong { font-size: 13px; font-weight: 600; }
+.p-doc small { font-size: 12px; color: var(--text); }
+
 /* contacts */
 .contacts { background: var(--soft); }
 .c-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 32px; }
@@ -269,7 +281,6 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
     <nav class="nav" aria-label="Меню">
       <a href="#about" data-i18n="nav_about"></a>
       <a href="#products" data-i18n="nav_products"></a>
-      <a href="#cert" data-i18n="nav_cert"></a>
       <a href="#contacts" data-i18n="nav_contacts"></a>
     </nav>
     <div class="head-contacts">
@@ -284,7 +295,6 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
   <nav class="mnav" id="mnav" hidden>
     <a href="#about" data-i18n="nav_about"></a>
     <a href="#products" data-i18n="nav_products"></a>
-    <a href="#cert" data-i18n="nav_cert"></a>
     <a href="#contacts" data-i18n="nav_contacts"></a>
   </nav>
 </header>
@@ -400,21 +410,6 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
     </div>
   </section>
 
-  <section class="section" id="cert">
-    <div class="wrap cert-grid">
-      <figure class="cert-img"><img src="cert.jpg" alt="Сертификат официального дилера KOSCAB" width="927" height="1304" loading="lazy"></figure>
-      <div class="cert-text">
-        <h2 class="section-title" data-i18n="cert_h"></h2>
-        <p data-i18n="cert_p"></p>
-        <dl class="facts">
-          <div><dt data-i18n="cert_reg"></dt><dd>KOS-ODR-Y2026-056</dd></div>
-          <div><dt data-i18n="cert_issued"></dt><dd>30.09.2026</dd></div>
-          <div><dt data-i18n="cert_valid"></dt><dd>30.09.2027</dd></div>
-        </dl>
-        <button class="btn btn-teal" type="button" id="openCert" data-i18n="cert_open"></button>
-      </div>
-    </div>
-  </section>
 
   <section class="section contacts" id="contacts">
     <div class="wrap">
@@ -425,6 +420,21 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
         <div class="c-card"><svg><use href="#i-wa"/></svg><small>WhatsApp</small><strong>+7 702 389 92 64</strong><a class="copy" href="https://wa.me/77023899264" target="_blank" rel="noopener" data-i18n="wa_write"></a></div>
         <div class="c-card"><svg><use href="#i-pin"/></svg><small data-i18n="c_addr"></small><strong data-i18n="addr" style="user-select:text"></strong></div>
         <div class="c-card"><svg><use href="#i-clock"/></svg><small data-i18n="c_hours"></small><strong data-i18n="hours" style="user-select:text"></strong></div>
+      </div>
+    </div>
+  </section>
+  <section class="partners" id="partners">
+    <div class="wrap">
+      <h2 class="partners-h" data-i18n="partners_h"></h2>
+      <div class="p-grid">
+        <button class="p-doc" type="button" data-doc="cert.jpg" data-alt="KOSCAB">
+          <img src="cert.jpg" alt="" width="927" height="1304" loading="lazy">
+          <span><strong>Костромакабель · KOSCAB</strong><small data-i18n="p1"></small></span>
+        </button>
+        <button class="p-doc" type="button" data-doc="partner-kab.jpg" data-alt="КАВ">
+          <img src="partner-kab.jpg" alt="" width="928" height="1159" loading="lazy">
+          <span><strong>Завод КАВ · ООО «ТЛ Телеком»</strong><small data-i18n="p2"></small></span>
+        </button>
       </div>
     </div>
   </section>
@@ -441,7 +451,7 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
       <ul>
         <li><a href="#about" data-i18n="nav_about"></a></li>
         <li><a href="#products" data-i18n="nav_products"></a></li>
-        <li><a href="#cert" data-i18n="nav_cert"></a></li>
+        <li><a href="#partners" data-i18n="nav_cert"></a></li>
         <li><a href="#contacts" data-i18n="nav_contacts"></a></li>
       </ul>
     </div>
@@ -477,7 +487,7 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
 
 <div class="lightbox" id="lightbox" hidden>
   <button class="close" type="button" id="lbClose" aria-label="Закрыть">✕</button>
-  <img src="cert.jpg" alt="Сертификат официального дилера KOSCAB" width="927" height="1304">
+  <img id="lbImg" src="" alt="">
 </div>
 
 <script>
@@ -486,73 +496,73 @@ const CONTACT = { phone: "+7 702 389 92 64", mail: "sales@вашдомен.kz" }
 
 const T = {
   ru: {
-    top: "Официальный дилер завода «Костромакабель» (KOSCAB) в Республике Казахстан",
-    nav_about: "О компании", nav_products: "Продукция", nav_cert: "Сертификат", nav_contacts: "Контакты",
-    bar_btn: "Продукция", bar_text: "Оптический кабель и компоненты для сетей связи", bar_badge: "Поставки и работы по всей территории РК",
-    s1_t: "Официальный дилер KOSCAB", s1_s: "Оптический кабель напрямую с завода «Костромакабель» для операторов связи и монтажных организаций Казахстана.",
+    top: "Оптический кабель и компоненты ВОЛС · Костанай",
+    nav_about: "О компании", nav_products: "Продукция", nav_cert: "Партнёры", nav_contacts: "Контакты",
+    bar_btn: "Продукция", bar_text: "Кабель, муфты, кроссы, патч-корды и разветвители", bar_badge: "Поставки и работы по всей территории РК",
+    s1_t: "Оптический кабель для сетей связи", s1_s: "Поставляем кабель и компоненты ВОЛС операторам связи и монтажным организациям Казахстана. Работаем напрямую с заводами-производителями.",
     s2_t: "Кабель для любой прокладки", s2_s: "Подвес на опорах, кабельная канализация, грунт, здания и последняя миля FTTH.",
     s3_t: "Всё для монтажа ВОЛС", s3_s: "Муфты, кроссы, патч-корды, разветвители и инструмент для сварки волокна.",
     btn_products: "Продукция", btn_contact: "Связаться",
     products_h: "Продукция", products_sub: "Нажмите на раздел, чтобы открыть описание",
     about_h: "О компании",
-    about_p: "MAX Telecom Components — официальный дилер KOSCAB в Казахстане. Поставляем оптический кабель и компоненты для строительства и ремонта сетей связи: от магистральных линий до подключения квартир.",
-    adv_h: "Почему MAX", adv1: "Официальный дилер завода", adv2: "Продукция с документами и сертификатами", adv3: "Подбор кабеля под ваш проект", adv4: "Поставки и работы по всей территории Республики Казахстан", adv5: "Кабель и пассивная оптика в одном месте", adv6: "Работаем с юр. лицами и ИП",
-    cert_h: "Сертификат официального дилера",
-    cert_p: "ИП «Шайкенова А.Ж.» — официальный дилер завода «Костромакабель» с правом реализации продукции под торговой маркой KOSCAB (КОС) на территории Республики Казахстан.",
-    cert_reg: "Регистрационный номер", cert_issued: "Дата выдачи", cert_valid: "Действителен до", cert_open: "Открыть сертификат",
+    about_p: "MAX Telecom Components — поставщик оптического кабеля и компонентов для строительства и ремонта сетей связи. Работаем из Костаная и поставляем по всему Казахстану: от магистральных линий до подключения квартир.",
+    adv_h: "Почему MAX", adv1: "Работаем напрямую с заводами", adv2: "Продукция с документами и сертификатами", adv3: "Подбор кабеля под ваш проект", adv4: "Поставки и работы по всей территории Республики Казахстан", adv5: "Кабель и пассивная оптика в одном месте", adv6: "Работаем с юр. лицами и ИП",
     contacts_h: "Контакты", contacts_sub: "Напишите или позвоните, подберём кабель и подготовим счёт",
     c_phone: "Телефон", c_mail: "Эл. почта", c_addr: "Адрес", c_hours: "Режим работы",
     addr: "г. Костанай, ул. Камшат Донебаевой, 66, офис 2", hours: "Пн–Пт, 9:00–18:00",
     copy: "Скопировать", copied: "Скопировано", wa_write: "Написать в WhatsApp",
-    f_about: "Оптический кабель и компоненты KOSCAB для сетей связи Казахстана.", f_nav: "Разделы",
+    f_about: "Оптический кабель и компоненты для сетей связи Казахстана.", f_nav: "Разделы",
     rights: "© 2026 MAX Telecom Components · ИП «Шайкенова А.Ж.», БИН 920113450405",
-    m_kicker: "Раздел продукции", m_ask: "Запросить цену"
+    m_kicker: "Раздел продукции", m_ask: "Запросить цену",
+    partners_h: "Партнёры и документы",
+    p1: "Официальный дилер · сертификат до 30.09.2027",
+    p2: "Официальный партнёр · письмо от 01.01.2026"
   },
   kk: {
-    top: "«Костромакабель» (KOSCAB) зауытының Қазақстан Республикасындағы ресми дилері",
-    nav_about: "Компания туралы", nav_products: "Өнімдер", nav_cert: "Сертификат", nav_contacts: "Байланыс",
-    bar_btn: "Өнімдер", bar_text: "Байланыс желілеріне арналған оптикалық кабель және компоненттер", bar_badge: "ҚР бүкіл аумағында жеткізу және жұмыстар",
-    s1_t: "KOSCAB ресми дилері", s1_s: "«Костромакабель» зауытынан тікелей оптикалық кабель — Қазақстанның байланыс операторлары мен монтаждау ұйымдары үшін.",
+    top: "ТОБЖ оптикалық кабелі мен компоненттері · Қостанай",
+    nav_about: "Компания туралы", nav_products: "Өнімдер", nav_cert: "Серіктестер", nav_contacts: "Байланыс",
+    bar_btn: "Өнімдер", bar_text: "Кабель, муфталар, кросстар, патч-корлар және тармақтағыштар", bar_badge: "ҚР бүкіл аумағында жеткізу және жұмыстар",
+    s1_t: "Байланыс желілеріне арналған оптикалық кабель", s1_s: "Қазақстанның байланыс операторлары мен монтаждау ұйымдарына ТОБЖ кабелі мен компоненттерін жеткіземіз. Өндіруші зауыттармен тікелей жұмыс істейміз.",
     s2_t: "Кез келген төсеуге арналған кабель", s2_s: "Тіректерге ілу, кабель кәрізі, топырақ, ғимараттар және FTTH соңғы мильі.",
     s3_t: "ТОБЖ монтажына қажеттінің бәрі", s3_s: "Муфталар, кросстар, патч-корлар, тармақтағыштар және талшықты дәнекерлеу құралдары.",
     btn_products: "Өнімдер", btn_contact: "Хабарласу",
     products_h: "Өнімдер", products_sub: "Сипаттаманы ашу үшін бөлімді басыңыз",
     about_h: "Компания туралы",
-    about_p: "MAX Telecom Components — KOSCAB-тың Қазақстандағы ресми дилері. Байланыс желілерін салуға және жөндеуге арналған оптикалық кабель мен компоненттерді жеткіземіз: магистральдық желілерден пәтерлерді қосуға дейін.",
-    adv_h: "Неліктен MAX", adv1: "Зауыттың ресми дилері", adv2: "Құжаттары мен сертификаттары бар өнім", adv3: "Жобаңызға кабель таңдау", adv4: "Қазақстан Республикасының бүкіл аумағында жеткізу және жұмыстар", adv5: "Кабель мен пассивті оптика бір жерде", adv6: "Заңды тұлғалармен және ЖК-мен жұмыс істейміз",
-    cert_h: "Ресми дилер сертификаты",
-    cert_p: "«Шайкенова А.Ж.» ЖК — «Костромакабель» зауытының KOSCAB (КОС) сауда белгісімен өнімдерді Қазақстан Республикасы аумағында өткізу құқығы бар ресми дилері.",
-    cert_reg: "Тіркеу нөмірі", cert_issued: "Берілген күні", cert_valid: "Жарамдылық мерзімі", cert_open: "Сертификатты ашу",
+    about_p: "MAX Telecom Components — байланыс желілерін салуға және жөндеуге арналған оптикалық кабель мен компоненттерді жеткізуші. Қостанайдан жұмыс істеп, бүкіл Қазақстан бойынша жеткіземіз: магистральдық желілерден пәтерлерді қосуға дейін.",
+    adv_h: "Неліктен MAX", adv1: "Зауыттармен тікелей жұмыс", adv2: "Құжаттары мен сертификаттары бар өнім", adv3: "Жобаңызға кабель таңдау", adv4: "Қазақстан Республикасының бүкіл аумағында жеткізу және жұмыстар", adv5: "Кабель мен пассивті оптика бір жерде", adv6: "Заңды тұлғалармен және ЖК-мен жұмыс істейміз",
     contacts_h: "Байланыс", contacts_sub: "Жазыңыз немесе қоңырау шалыңыз — кабель таңдап, шот дайындаймыз",
     c_phone: "Телефон", c_mail: "Эл. пошта", c_addr: "Мекенжай", c_hours: "Жұмыс уақыты",
     addr: "Қостанай қ., Қамшат Дөнебаева к-сі, 66, 2-кеңсе", hours: "Дс–Жм, 9:00–18:00",
     copy: "Көшіру", copied: "Көшірілді", wa_write: "WhatsApp-қа жазу",
-    f_about: "Қазақстанның байланыс желілеріне арналған KOSCAB оптикалық кабелі мен компоненттері.", f_nav: "Бөлімдер",
+    f_about: "Қазақстанның байланыс желілеріне арналған оптикалық кабель мен компоненттер.", f_nav: "Бөлімдер",
     rights: "© 2026 MAX Telecom Components · «Шайкенова А.Ж.» ЖК, БСН 920113450405",
-    m_kicker: "Өнім бөлімі", m_ask: "Бағасын сұрау"
+    m_kicker: "Өнім бөлімі", m_ask: "Бағасын сұрау",
+    partners_h: "Серіктестер мен құжаттар",
+    p1: "Ресми дилер · сертификат 30.09.2027 дейін",
+    p2: "Ресми серіктес · 01.01.2026 хат"
   },
   en: {
-    top: "Official dealer of the Kostromakabel (KOSCAB) plant in the Republic of Kazakhstan",
-    nav_about: "About", nav_products: "Products", nav_cert: "Certificate", nav_contacts: "Contacts",
-    bar_btn: "Products", bar_text: "Fiber optic cable and components for telecom networks", bar_badge: "Supply and works across Kazakhstan",
-    s1_t: "Official KOSCAB dealer", s1_s: "Fiber optic cable straight from the Kostromakabel plant for telecom operators and installers in Kazakhstan.",
+    top: "Fiber optic cable and network components · Kostanay",
+    nav_about: "About", nav_products: "Products", nav_cert: "Partners", nav_contacts: "Contacts",
+    bar_btn: "Products", bar_text: "Cable, closures, patch panels, patch cords and splitters", bar_badge: "Supply and works across Kazakhstan",
+    s1_t: "Fiber optic cable for telecom networks", s1_s: "We supply cable and fiber network components to telecom operators and installers across Kazakhstan, working directly with manufacturers.",
     s2_t: "Cable for every installation", s2_s: "Aerial, duct, direct burial, indoor and the FTTH last mile.",
     s3_t: "Everything for fiber installation", s3_s: "Splice closures, patch panels, patch cords, splitters and fiber splicing tools.",
     btn_products: "Products", btn_contact: "Contact us",
     products_h: "Products", products_sub: "Click a category to open its description",
     about_h: "About us",
-    about_p: "MAX Telecom Components is the official KOSCAB dealer in Kazakhstan. We supply fiber optic cable and components for building and repairing telecom networks, from backbone lines to apartment connections.",
-    adv_h: "Why MAX", adv1: "Official plant dealer", adv2: "Products with documents and certificates", adv3: "Cable selection for your project", adv4: "Supply and works across the entire Republic of Kazakhstan", adv5: "Cable and passive optics in one place", adv6: "We work with companies and sole traders",
-    cert_h: "Official dealer certificate",
-    cert_p: "IE Shaikenova A.Zh. is an official dealer of the Kostromakabel plant, authorized to sell KOSCAB (KOS) branded products in the Republic of Kazakhstan.",
-    cert_reg: "Registration number", cert_issued: "Issued", cert_valid: "Valid until", cert_open: "View certificate",
+    about_p: "MAX Telecom Components supplies fiber optic cable and components for building and repairing telecom networks. Based in Kostanay, we deliver across Kazakhstan, from backbone lines to apartment connections.",
+    adv_h: "Why MAX", adv1: "Direct supply from manufacturers", adv2: "Products with documents and certificates", adv3: "Cable selection for your project", adv4: "Supply and works across the entire Republic of Kazakhstan", adv5: "Cable and passive optics in one place", adv6: "We work with companies and sole traders",
     contacts_h: "Contacts", contacts_sub: "Write or call us, we will pick the cable and prepare an invoice",
     c_phone: "Phone", c_mail: "Email", c_addr: "Address", c_hours: "Working hours",
     addr: "66 Kamshat Donebayeva St., office 2, Kostanay", hours: "Mon–Fri, 9:00–18:00",
     copy: "Copy", copied: "Copied", wa_write: "Message on WhatsApp",
-    f_about: "KOSCAB fiber optic cable and components for telecom networks in Kazakhstan.", f_nav: "Sections",
+    f_about: "Fiber optic cable and components for telecom networks in Kazakhstan.", f_nav: "Sections",
     rights: "© 2026 MAX Telecom Components · IE Shaikenova A.Zh., BIN 920113450405",
-    m_kicker: "Product category", m_ask: "Request a price"
+    m_kicker: "Product category", m_ask: "Request a price",
+    partners_h: "Partners and documents",
+    p1: "Official dealer · certificate valid to 30.09.2027",
+    p2: "Official partner · letter of 01.01.2026"
   }
 };
 
@@ -607,7 +617,10 @@ $("mAsk").addEventListener("click", closeModal);
 $("modal").addEventListener("click", (e) => { if (e.target.id === "modal") closeModal(); });
 
 /* сертификат */
-$("openCert").onclick = () => { $("lightbox").hidden = false; document.body.style.overflow = "hidden"; };
+document.querySelectorAll(".p-doc").forEach((b) => b.addEventListener("click", () => {
+  $("lbImg").src = b.dataset.doc; $("lbImg").alt = b.dataset.alt;
+  $("lightbox").hidden = false; document.body.style.overflow = "hidden"; $("lbClose").focus();
+}));
 const closeLb = () => { $("lightbox").hidden = true; document.body.style.overflow = ""; };
 $("lbClose").onclick = closeLb; $("lightbox").addEventListener("click", (e) => { if (e.target.id === "lightbox") closeLb(); });
 
