@@ -268,7 +268,7 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
 
 .lightbox { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; background: rgba(10,16,55,.8);
   padding: calc(env(safe-area-inset-top, 0px) + 56px) var(--gr) calc(env(safe-area-inset-bottom, 0px) + 20px) var(--gl); }
-.lightbox img { max-width: 100%; max-height: 100%; width: auto; border-radius: 6px; }
+.lightbox img { width: auto; height: auto; max-width: min(520px, 100%); max-height: calc(100vh - 140px); max-height: calc(100dvh - 140px); object-fit: contain; border-radius: 6px; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
 .lightbox .close { top: calc(env(safe-area-inset-top, 0px) + 12px); right: var(--gr); position: absolute; }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
