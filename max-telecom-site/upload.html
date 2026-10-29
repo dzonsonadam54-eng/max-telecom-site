@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Обновление каталога — MAX Telecom</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<style>
+:root { --teal: #065874; --teal-2: #0a6f91; --navy: #0a1037; --text: #5c6470; --line: #e2e8ed; --soft: #f1f6f9; --ok: #17733b; --err: #b42318; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--soft); color: var(--text); font: 15px/1.55 "Montserrat", "Segoe UI", Arial, sans-serif; }
+.wrap { max-width: 640px; margin: 0 auto; padding: 32px max(16px, env(safe-area-inset-right)) 48px max(16px, env(safe-area-inset-left)); }
+.logo { height: 30px; width: auto; max-width: 100%; display: block; margin-bottom: 20px; }
+h1 { color: var(--navy); font-size: 22px; margin: 0 0 6px; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 22px; margin-top: 16px; box-shadow: 0 3px 12px rgba(10,16,55,.06); }
+label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--navy); margin-bottom: 6px; }
+input[type=password] { width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 6px; font-family: inherit; font-size: 15px; font-weight: 500; }
+input:focus-visible, button:focus-visible, .drop:focus-visible { outline: 2px solid var(--teal-2); outline-offset: 2px; }
+.drop { display: grid; place-items: center; gap: 6px; text-align: center; padding: 34px 16px; border: 2px dashed #b9cfdb; border-radius: 8px; background: var(--soft); cursor: pointer; color: var(--navy); font-weight: 600; }
+.drop.over { border-color: var(--teal-2); background: #e6f3f8; }
+.drop small { color: var(--text); font-weight: 500; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 6px; border: 1px solid transparent; font-family: inherit; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; cursor: pointer; }
+.btn-teal { background: var(--teal); color: #fff; }
+.btn-teal:hover { background: var(--teal-2); }
+.btn-ghost { background: #fff; color: var(--teal); border-color: var(--teal); }
+.btn[disabled] { opacity: .5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.msg { margin-top: 14px; padding: 12px 14px; border-radius: 6px; font-weight: 600; }
+.msg.ok { background: #e3f6ea; color: var(--ok); }
+.msg.err { background: #fde8e7; color: var(--err); }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0; }
+dt { color: var(--text); } dd { margin: 0; color: var(--navy); font-weight: 600; }
+ul.groups { margin: 8px 0 0; padding-left: 18px; color: var(--navy); }
+.steps { margin: 8px 0 0; padding-left: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <img class="logo" src="/logo-max-dark.png" alt="MAX Telecom Components" width="640" height="186">
+  <h1>Обновление каталога на сайте</h1>
+  <p>Обычно каталог обновляется сам из 1С. Эта страница — запасной способ загрузить отчёт вручную.</p>
+
+  <div class="card">
+    <label for="code">Код доступа</label>
+    <input id="code" type="password" autocomplete="current-password" placeholder="Код из Vercel (STOCK_PUSH_TOKEN)">
+  </div>
+
+  <div class="card">
+    <label>Файл отчёта из 1С</label>
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Выбрать файл отчёта">
+      <span id="dropText">Перетащите сюда файл .xlsx или нажмите, чтобы выбрать</span>
+      <small>Отчёты → Универсальный отчёт → «Товары для сайта» → Сохранить как Excel 2007</small>
+    </div>
+    <input id="file" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+    <div id="preview" hidden>
+      <dl style="margin-top:16px">
+        <dt>Товаров в файле</dt><dd id="pReceived"></dd>
+        <dt>Будет на сайте</dt><dd id="pShown"></dd>
+        <dt>В наличии / мало / под заказ</dt><dd id="pStatus"></dd>
+      </dl>
+      <ul class="groups" id="pGroups"></ul>
+    </div>
+    <div class="row">
+      <button class="btn btn-teal" id="publish" type="button" disabled>Опубликовать</button>
+      <button class="btn btn-ghost" id="rollback" type="button">Вернуть прошлую версию</button>
+    </div>
+    <div class="msg" id="msg" hidden role="status"></div>
+  </div>
+</div>
+<script>
+const $ = (id) => document.getElementById(id);
+let fileB64 = null;
+try { $("code").value = localStorage.getItem("max-upload-code") || ""; } catch (e) {}
+$("code").addEventListener("change", () => { try { localStorage.setItem("max-upload-code", $("code").value.trim()); } catch (e) {} });
+
+function say(text, ok) { const m = $("msg"); m.textContent = text; m.className = "msg " + (ok ? "ok" : "err"); m.hidden = false; }
+async function call(body) {
+  const code = $("code").value.trim();
+  if (!code) throw new Error("Введите код доступа");
+  const r = await fetch("/api/stock-upload", { method: "POST", headers: { "Content-Type": "application/json", Authorization: "Bearer " + code }, body: JSON.stringify(body) });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error || "Ошибка " + r.status);
+  return data;
+}
+function readFile(f) {
+  return new Promise((ok, fail) => { const fr = new FileReader(); fr.onload = () => ok(String(fr.result).split(",")[1]); fr.onerror = fail; fr.readAsDataURL(f); });
+}
+async function pick(f) {
+  if (!f) return;
+  $("msg").hidden = true; $("preview").hidden = true; $("publish").disabled = true;
+  if (!/\.xlsx$/i.test(f.name)) return say("Нужен файл .xlsx: в 1С выберите «Сохранить как → Лист Excel 2007»", false);
+  $("dropText").textContent = f.name;
+  try {
+    fileB64 = await readFile(f);
+    const d = await call({ fileBase64: fileB64, filename: f.name, dryRun: true });
+    $("pReceived").textContent = d.received; $("pShown").textContent = d.shown;
+    $("pStatus").textContent = `${d.statuses.in || 0} / ${d.statuses.low || 0} / ${d.statuses.order || 0}`;
+    $("pGroups").innerHTML = Object.entries(d.groups).map(([g, n]) => `<li>${g.replace(/[<>&]/g, "")}: ${n}</li>`).join("");
+    $("preview").hidden = false; $("publish").disabled = false;
+    try { localStorage.setItem("max-upload-code", $("code").value.trim()); } catch (e) {}
+  } catch (e) { say(e.message, false); }
+}
+$("drop").onclick = () => $("file").click();
+$("drop").onkeydown = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("file").click(); } };
+$("file").onchange = () => pick($("file").files[0]);
+["dragover", "dragenter"].forEach((t) => $("drop").addEventListener(t, (e) => { e.preventDefault(); $("drop").classList.add("over"); }));
+["dragleave", "drop"].forEach((t) => $("drop").addEventListener(t, (e) => { e.preventDefault(); $("drop").classList.remove("over"); }));
+$("drop").addEventListener("drop", (e) => pick(e.dataTransfer.files[0]));
+$("publish").onclick = async () => {
+  $("publish").disabled = true;
+  try { const d = await call({ fileBase64: fileB64 }); say(`Готово: на сайте ${d.shown} товаров. Обновится в течение минуты.`, true); }
+  catch (e) { say(e.message, false); $("publish").disabled = false; }
+};
+$("rollback").onclick = async () => {
+  try { const d = await call({ action: "rollback" }); say(`Возвращена версия от ${new Date(d.updated).toLocaleString("ru-RU")}: ${d.shown} товаров.`, true); }
+  catch (e) { say(e.message, false); }
+};
+</script>
+</body>
+</html>
