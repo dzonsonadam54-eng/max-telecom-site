@@ -748,8 +748,11 @@ const DEMO_STOCK = { demo: true, updated: new Date().toISOString(), items: [
 
 let catFilter = "";
 function catLabel(i) {
+  if (i.group) return i.group;
+  const g = STOCK && STOCK.groups && i.g && STOCK.groups[i.g];
+  if (g) return g[lang] || g.ru;
   const c = CATS.find(([id]) => id === i.cat);
-  return c ? c[1][lang][0] : (i.group || T[lang].cat_other);
+  return c ? c[1][lang][0] : T[lang].cat_other;
 }
 function renderCatalog() {
   const d = T[lang];
@@ -761,7 +764,10 @@ function renderCatalog() {
   $("catWait").hidden = true; $("catBody").hidden = false;
   $("catH").textContent = d.cat_h; $("catSub").textContent = d.cat_sub; $("catQ").placeholder = d.cat_search;
   $("catQ").setAttribute("aria-label", d.cat_search);
-  const labels = [...new Set(STOCK.items.map(catLabel))];
+  const counts = {};
+  for (const it of STOCK.items) { const l = catLabel(it); counts[l] = (counts[l] || 0) + 1; }
+  const other = d.cat_other, otherG = STOCK.groups && STOCK.groups.other && (STOCK.groups.other[lang] || STOCK.groups.other.ru);
+  const labels = Object.keys(counts).sort((x, y) => (x === other || x === otherG) - (y === other || y === otherG) || counts[y] - counts[x]);
   if (catFilter && !labels.includes(catFilter)) catFilter = "";
   $("catChips").innerHTML = [["", d.cat_all], ...labels.map((l) => [l, l])]
     .map(([v, t]) => `<button type="button" data-v="${escH(v)}" aria-pressed="${v === catFilter}">${escH(t)}</button>`).join("");

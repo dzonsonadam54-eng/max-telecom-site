@@ -37,12 +37,24 @@ function statusFor(qty, unit) {
 }
 
 const EXCLUDE = new Set((config.excludeGroups || []).map((g) => g.trim().toLowerCase()));
+const ACCOUNTS = new Set((config.accounts || []).map(String));
+const EXCLUDE_NAMES = (config.excludeNames || []).map((x) => x.toLowerCase());
+const AUTO = config.autoGroups || [];
+
+function autoGroup(name) {
+  const n = String(name || "").toLowerCase();
+  for (const [needle, id] of AUTO) if (n.includes(needle)) return id;
+  return "other";
+}
 
 function toPublic(raw) {
   const items = [];
   for (const r of raw.items || []) {
     if (!r || !r.name) continue;
     if (r.group && EXCLUDE.has(String(r.group).trim().toLowerCase())) continue;
+    if (ACCOUNTS.size && r.account && !ACCOUNTS.has(String(r.account).trim())) continue;
+    const lname = String(r.name).toLowerCase();
+    if (EXCLUDE_NAMES.some((x) => lname.includes(x))) continue;
     const price = Number(r.price);
     // Visibility rule the shop owner controls from 1C: an item is on the site only if it has a retail price.
     if (config.requirePrice && !(price > 0)) continue;
@@ -51,13 +63,14 @@ function toPublic(raw) {
       name: String(r.name).slice(0, 200),
       cat: categoryFor(r.name, r.group),
       group: String(r.group || "").slice(0, 80),
+      g: r.group ? undefined : autoGroup(r.name),
       unit: String(r.unit || "").slice(0, 12),
       status: statusFor(r.qty, r.unit),
       price: Number.isFinite(price) && price > 0 ? Math.round(price * 100) / 100 : null,
     });
   }
   items.sort((a, b) => a.name.localeCompare(b.name, "ru"));
-  return { configured: true, updated: raw.updated || new Date().toISOString(), items };
+  return { configured: true, updated: raw.updated || new Date().toISOString(), groups: config.groupNames || {}, items };
 }
 
 // ---------- 1C report export (Excel) -> raw items ----------
@@ -68,52 +81,75 @@ const H = {
   name: /^(товар|номенклатура|наименование)$/i,
   qty: /(количеств|остаток)/i,
   group: /(групп|родитель)/i,
-  sku: /(артикул|код)/i,
+  sku: /^(артикул|код)$/i,
   unit: /(ед\.?\s*изм|единиц)/i,
-  price: /цена/i,
+  account: /^сч[её]т/i,
+  // Retail price only. Cost columns ("Учетная цена", "Себестоимость", purchase) are never read.
+  price: /^(цена|цена продажи|розничная цена)$/i,
 };
+const FINAL = /конечн\w*\s+остат/i;
 
 function toNumber(v) {
-  const n = Number(String(v ?? "").replace(/[\s\u00a0]/g, "").replace(",", "."));
+  const n = Number(String(v ?? "").replace(/[\s ]/g, "").replace(",", "."));
   return Number.isFinite(n) ? n : 0;
 }
 
-function fromReportRows(rows) {
-  let hi = -1, col = {};
+// Finds the header in a 1C report saved to Excel. Supports:
+//  - one-row headers (Universal report: "Товар | Группа | Количество остаток")
+//  - two-row headers (Material statement: "Конечный остаток" over "Учетная цена | Количество | Сумма"),
+//    where the quantity is the "Количество" under "Конечный остаток".
+function findHeader(rows) {
+  const str = (r) => (r || []).map((c) => String(c ?? "").trim());
   for (let i = 0; i < Math.min(rows.length, 60); i++) {
-    const r = rows[i].map((c) => String(c || "").trim());
+    const r = str(rows[i]);
     const name = r.findIndex((c) => H.name.test(c));
-    const qty = r.findIndex((c, j) => j !== name && H.qty.test(c));
-    if (name >= 0 && qty >= 0) {
-      hi = i;
-      col = { name, qty };
-      for (const k of ["group", "sku", "unit", "price"]) {
-        const j = r.findIndex((c, x) => x !== name && x !== qty && H[k].test(c));
-        if (j >= 0) col[k] = j;
-      }
-      break;
+    if (name < 0) continue;
+    let qty = -1, start = i + 1;
+    const fin = r.findIndex((c) => FINAL.test(c));
+    if (fin >= 0) {
+      const sub = str(rows[i + 1]);
+      const nextHead = r.findIndex((c, j) => j > fin && c);
+      const stop = nextHead > 0 ? nextHead : sub.length;
+      for (let j = fin; j < stop; j++) if (/^количеств/i.test(sub[j])) { qty = j; break; }
+      if (qty >= 0) start = i + 2;
     }
+    if (qty < 0) qty = r.findIndex((c, j) => j !== name && H.qty.test(c) && !/начальн/i.test(c));
+    if (qty < 0) continue;
+    const col = { name, qty };
+    for (const k of ["group", "sku", "unit", "account", "price"]) {
+      const j = r.findIndex((c, x) => x !== name && x !== qty && H[k].test(c));
+      if (j >= 0) col[k] = j;
+    }
+    return { col, start };
   }
-  if (hi < 0) throw new Error("В файле не найдены колонки «Товар» и «Количество»");
+  return null;
+}
+
+function fromReportRows(rows) {
+  const h = findHeader(rows);
+  if (!h) throw new Error("В файле не найдены колонки «Номенклатура» и «Количество»");
+  const { col, start } = h;
+  const cell = (r, k) => (col[k] != null ? String(r[col[k]] ?? "").trim() : "");
   const items = [];
-  for (let i = hi + 1; i < rows.length; i++) {
-    const r = rows[i];
-    const name = String(r[col.name] || "").trim();
+  for (let i = start; i < rows.length; i++) {
+    const r = rows[i] || [];
+    const name = String(r[col.name] ?? "").replace(/\s+/g, " ").trim();
+    if (/^итого/i.test(String(r[0] ?? "").trim()) || /^итого/i.test(name)) break;
     if (!name) continue;
-    if (/^итого/i.test(name) || /^итого/i.test(String(r[0] || "").trim())) break;
     items.push({
       name,
       qty: toNumber(r[col.qty]),
-      group: col.group != null ? String(r[col.group] || "").trim() : "",
-      sku: col.sku != null ? String(r[col.sku] || "").trim() : "",
-      unit: col.unit != null ? String(r[col.unit] || "").trim() : "",
+      group: cell(r, "group"),
+      sku: cell(r, "sku"),
+      unit: cell(r, "unit"),
+      account: cell(r, "account"),
       price: col.price != null ? toNumber(r[col.price]) : null,
     });
   }
-  // The same product can appear on several rows (batches, warehouses): sum quantities.
+  // The same product can appear on several rows (batches, several 1C codes): sum quantities.
   const merged = new Map();
   for (const it of items) {
-    const key = `${it.sku}|${it.name}`;
+    const key = `${it.account}|${it.name.toLowerCase()}|${it.unit.toLowerCase()}`;
     const prev = merged.get(key);
     if (prev) prev.qty += it.qty; else merged.set(key, { ...it });
   }

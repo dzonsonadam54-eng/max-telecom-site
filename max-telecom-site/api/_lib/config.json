@@ -1,7 +1,403 @@
 {
-  "_comment": "groups: exact 1C group name -> site category id. keywords: fallback by words in group/name. lowThreshold: below this quantity the status is 'low'. requirePrice: show only items with a retail price (off: prices are not kept in this 1C). excludeGroups: 1C group names never shown on the site.",
-  "requirePrice": false,
+  "_comment": "accounts: 1C accounting accounts shown on the site (1330 = goods; 1310 materials are hidden). excludeNames: words; any item whose name contains one is hidden. excludeGroups: 1C group names hidden. autoGroups: when the report has no 1C groups, the site groups items by words in the name (first match wins, order matters); groupNames: titles of those groups in ru/kk/en. keywords: links items to the product cards on the home page. lowThreshold: below this quantity the status is 'low'. requirePrice: show only items with a retail price.",
+  "accounts": [
+    "1330"
+  ],
+  "excludeNames": [
+    "бензин",
+    "талоны",
+    "керамогранит",
+    "нагревательный мат",
+    "натяжитель ремня",
+    "hdd "
+  ],
   "excludeGroups": [],
+  "requirePrice": false,
+  "autoGroups": [
+    [
+      "кронштейн",
+      "hw"
+    ],
+    [
+      "дроп",
+      "drop"
+    ],
+    [
+      "опт.типа дроп",
+      "drop"
+    ],
+    [
+      "мини-муфта",
+      "tools"
+    ],
+    [
+      "гильза",
+      "tools"
+    ],
+    [
+      "кассет",
+      "tools"
+    ],
+    [
+      "комплект для защиты",
+      "tools"
+    ],
+    [
+      "комплект защиты",
+      "tools"
+    ],
+    [
+      "дефектоскоп",
+      "tools"
+    ],
+    [
+      "инструмент",
+      "tools"
+    ],
+    [
+      "устройство для переноски",
+      "tools"
+    ],
+    [
+      "рельсы",
+      "tools"
+    ],
+    [
+      "спирт",
+      "tools"
+    ],
+    [
+      "скалыват",
+      "tools"
+    ],
+    [
+      "rj45",
+      "copper"
+    ],
+    [
+      "rj-45",
+      "copper"
+    ],
+    [
+      "витая",
+      "copper"
+    ],
+    [
+      "utp",
+      "copper"
+    ],
+    [
+      "ftp",
+      "copper"
+    ],
+    [
+      "кспп",
+      "copper"
+    ],
+    [
+      "ксвпп",
+      "copper"
+    ],
+    [
+      "rg-6",
+      "copper"
+    ],
+    [
+      "ввг",
+      "copper"
+    ],
+    [
+      "кабель 4/2",
+      "copper"
+    ],
+    [
+      "keystone",
+      "copper"
+    ],
+    [
+      "mosaic",
+      "copper"
+    ],
+    [
+      "розеточный модуль",
+      "copper"
+    ],
+    [
+      "компьютерная розетка",
+      "copper"
+    ],
+    [
+      "лицевая панель",
+      "copper"
+    ],
+    [
+      "скотч-лок",
+      "copper"
+    ],
+    [
+      "терминал",
+      "active"
+    ],
+    [
+      "onu",
+      "active"
+    ],
+    [
+      "sfp",
+      "active"
+    ],
+    [
+      "трансивер",
+      "active"
+    ],
+    [
+      "медиаконвертер",
+      "active"
+    ],
+    [
+      "коммутатор",
+      "active"
+    ],
+    [
+      "видеорегистратор",
+      "active"
+    ],
+    [
+      "камера видеонаблюдения",
+      "active"
+    ],
+    [
+      "усилитель сотовой",
+      "active"
+    ],
+    [
+      "делитель",
+      "split"
+    ],
+    [
+      "разветвитель",
+      "split"
+    ],
+    [
+      "мультиплексор",
+      "split"
+    ],
+    [
+      "патч-корд",
+      "patch"
+    ],
+    [
+      "патчкорд",
+      "patch"
+    ],
+    [
+      "шнур",
+      "patch"
+    ],
+    [
+      "пигтейл",
+      "patch"
+    ],
+    [
+      "адаптер",
+      "adapter"
+    ],
+    [
+      "коннектор",
+      "adapter"
+    ],
+    [
+      "розетка оптическ",
+      "adapter"
+    ],
+    [
+      "муфт",
+      "closure"
+    ],
+    [
+      "бокс",
+      "closure"
+    ],
+    [
+      "коробк",
+      "closure"
+    ],
+    [
+      "орк",
+      "closure"
+    ],
+    [
+      "ску-1",
+      "closure"
+    ],
+    [
+      "крышка для",
+      "closure"
+    ],
+    [
+      "кросс",
+      "odf"
+    ],
+    [
+      "шкаф",
+      "odf"
+    ],
+    [
+      "патч-панель",
+      "odf"
+    ],
+    [
+      "организатор",
+      "odf"
+    ],
+    [
+      "блок розеток",
+      "odf"
+    ],
+    [
+      "планка",
+      "odf"
+    ],
+    [
+      "переходник",
+      "odf"
+    ],
+    [
+      "кабель",
+      "optic"
+    ],
+    [
+      "волокон",
+      "optic"
+    ],
+    [
+      "зажим",
+      "hw"
+    ],
+    [
+      "узел",
+      "hw"
+    ],
+    [
+      "лента",
+      "hw"
+    ],
+    [
+      "бугель",
+      "hw"
+    ],
+    [
+      "скреп",
+      "hw"
+    ],
+    [
+      "скоба",
+      "hw"
+    ],
+    [
+      "клипса",
+      "hw"
+    ],
+    [
+      "соединитель",
+      "hw"
+    ],
+    [
+      "труба",
+      "duct"
+    ],
+    [
+      "лоток",
+      "duct"
+    ],
+    [
+      "желоб",
+      "duct"
+    ],
+    [
+      "крышка к лотку",
+      "duct"
+    ],
+    [
+      "колодец",
+      "duct"
+    ],
+    [
+      "накладка для желоба",
+      "duct"
+    ],
+    [
+      "профиль",
+      "duct"
+    ]
+  ],
+  "groupNames": {
+    "optic": {
+      "ru": "Оптический кабель",
+      "kk": "Оптикалық кабель",
+      "en": "Fiber optic cable"
+    },
+    "drop": {
+      "ru": "Дроп-кабель",
+      "kk": "Дроп-кабель",
+      "en": "Drop cable"
+    },
+    "patch": {
+      "ru": "Патч-корды и пигтейлы",
+      "kk": "Патч-кордтар мен пигтейлдер",
+      "en": "Patch cords and pigtails"
+    },
+    "split": {
+      "ru": "Делители",
+      "kk": "Бөлгіштер",
+      "en": "Splitters"
+    },
+    "closure": {
+      "ru": "Муфты, боксы, коробки",
+      "kk": "Муфталар, бокстар, қораптар",
+      "en": "Closures and boxes"
+    },
+    "odf": {
+      "ru": "Кроссы и шкафы",
+      "kk": "Кросстар мен шкафтар",
+      "en": "Patch panels and cabinets"
+    },
+    "adapter": {
+      "ru": "Адаптеры и коннекторы",
+      "kk": "Адаптерлер мен коннекторлар",
+      "en": "Adapters and connectors"
+    },
+    "active": {
+      "ru": "Активное оборудование",
+      "kk": "Белсенді жабдық",
+      "en": "Active equipment"
+    },
+    "copper": {
+      "ru": "Медь и СКС",
+      "kk": "Мыс кабель және СКЖ",
+      "en": "Copper cabling"
+    },
+    "hw": {
+      "ru": "Арматура и крепёж",
+      "kk": "Арматура және бекіткіштер",
+      "en": "Hardware and fasteners"
+    },
+    "duct": {
+      "ru": "Трубы и лотки",
+      "kk": "Құбырлар мен науалар",
+      "en": "Ducts and trays"
+    },
+    "tools": {
+      "ru": "Монтаж и инструмент",
+      "kk": "Монтаж және құрал-сайман",
+      "en": "Installation and tools"
+    },
+    "other": {
+      "ru": "Прочее",
+      "kk": "Басқа",
+      "en": "Other"
+    }
+  },
   "groups": {},
   "keywords": [
     [
@@ -145,6 +541,9 @@
     "м": 500,
     "км": 1,
     "бухта": 2,
-    "default": 5
+    "default": 5,
+    "метр": 500,
+    "пог. м.": 500,
+    "боб": 1
   }
 }

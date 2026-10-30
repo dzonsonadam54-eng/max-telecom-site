@@ -14,7 +14,7 @@ function summary(pub, received) {
   const groups = {};
   const statuses = { in: 0, low: 0, order: 0 };
   for (const i of pub.items) {
-    const g = i.group || "—";
+    const g = i.group || (pub.groups && pub.groups[i.g] && pub.groups[i.g].ru) || "—";
     groups[g] = (groups[g] || 0) + 1;
     statuses[i.status] = (statuses[i.status] || 0) + 1;
   }
