@@ -166,7 +166,7 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
 .st-name small { display: block; font-weight: 500; color: var(--text); font-size: 11px; }
 .st-pill { font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 999px; white-space: nowrap; }
 .st-pill.in { background: #e3f6ea; color: #17733b; }
-.st-pill.low { background: #fff3dc; color: #a15c07; }
+.st-pill.low { background: #eaf2f7; color: #2f5d78; }
 .st-pill.order { background: #eef1f4; color: #55606c; }
 .st-price { font-weight: 700; color: var(--navy); white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; min-width: 84px; }
 .st-price small { font-weight: 500; color: var(--text); font-size: 11px; }
@@ -444,7 +444,6 @@ h1, h2, h3 { color: var(--navy); margin: 0; text-wrap: balance; }
       <div id="catBody" hidden>
       <div class="cat-tools">
         <input id="catQ" type="search" autocomplete="off">
-        <span class="cat-count" id="catCount"></span>
       </div>
       <div class="cat-chips" id="catChips" role="group"></div>
       <ul class="stock-list cat-list" id="catList"></ul>
@@ -584,7 +583,7 @@ const T = {
     f_about: "Оптический кабель и компоненты для сетей связи Казахстана.", f_nav: "Разделы",
     rights: "© 2026 MAX Telecom Components · ИП «Шайкенова А.Ж.», БИН 920113450405",
     m_kicker: "Раздел продукции", m_ask: "Запросить цену",
-    st_h: "Наличие и цены", st_upd: "Обновлено", st_in: "В наличии", st_low: "Мало", st_order: "Под заказ", st_req: "по запросу", st_demo: "Демо-данные", st_per: "за",
+    st_h: "Наличие и цены", st_upd: "Обновлено", st_in: "В наличии", st_low: "Ограниченно", st_order: "Под заказ", st_req: "по запросу", st_demo: "Демо-данные", st_per: "за",
     cat_h: "Каталог и наличие", cat_sub: "Все позиции со склада. Данные обновляются автоматически из учётной системы.", cat_search: "Поиск по названию или артикулу", cat_all: "Все", cat_other: "Другое", cat_empty: "Ничего не найдено", cat_pos: "позиций",
     partners_h: "Партнёры и документы",
     p1: "Официальный дилер · сертификат до 30.09.2027",
@@ -609,7 +608,7 @@ const T = {
     f_about: "Қазақстанның байланыс желілеріне арналған оптикалық кабель мен компоненттер.", f_nav: "Бөлімдер",
     rights: "© 2026 MAX Telecom Components · «Шайкенова А.Ж.» ЖК, БСН 920113450405",
     m_kicker: "Өнім бөлімі", m_ask: "Бағасын сұрау",
-    st_h: "Қолда бары мен бағалар", st_upd: "Жаңартылды", st_in: "Қоймада бар", st_low: "Аз қалды", st_order: "Тапсырыспен", st_req: "сұрау бойынша", st_demo: "Демо-деректер", st_per: "бірлігі",
+    st_h: "Қолда бары мен бағалар", st_upd: "Жаңартылды", st_in: "Қоймада бар", st_low: "Шектеулі", st_order: "Тапсырыспен", st_req: "сұрау бойынша", st_demo: "Демо-деректер", st_per: "бірлігі",
     cat_h: "Каталог және қолда бары", cat_sub: "Қоймадағы барлық позициялар. Деректер есепке алу жүйесінен автоматты түрде жаңартылады.", cat_search: "Атауы немесе артикулы бойынша іздеу", cat_all: "Барлығы", cat_other: "Басқа", cat_empty: "Ештеңе табылмады", cat_pos: "позиция",
     partners_h: "Серіктестер мен құжаттар",
     p1: "Ресми дилер · сертификат 30.09.2027 дейін",
@@ -634,7 +633,7 @@ const T = {
     f_about: "Fiber optic cable and components for telecom networks in Kazakhstan.", f_nav: "Sections",
     rights: "© 2026 MAX Telecom Components · IE Shaikenova A.Zh., BIN 920113450405",
     m_kicker: "Product category", m_ask: "Request a price",
-    st_h: "Availability and prices", st_upd: "Updated", st_in: "In stock", st_low: "Low stock", st_order: "On order", st_req: "on request", st_demo: "Demo data", st_per: "per",
+    st_h: "Availability and prices", st_upd: "Updated", st_in: "In stock", st_low: "Limited stock", st_order: "On order", st_req: "on request", st_demo: "Demo data", st_per: "per",
     cat_h: "Catalog and availability", cat_sub: "All items in stock. Data updates automatically from our accounting system.", cat_search: "Search by name or code", cat_all: "All", cat_other: "Other", cat_empty: "Nothing found", cat_pos: "items",
     partners_h: "Partners and documents",
     p1: "Official dealer · certificate valid to 30.09.2027",
@@ -779,7 +778,6 @@ function renderCatalog() {
       ${pillHtml(i, d)}
       ${priceHtml(i, d, money)}
     </li>`).join("") : `<li class="cat-empty">${escH(d.cat_empty)}</li>`;
-  $("catCount").textContent = `${rows.length} ${d.cat_pos}`;
   $("catUpd").innerHTML = (STOCK.demo ? `<b>${d.st_demo}</b>` : "") + escH(d.st_upd + " " + new Date(STOCK.updated).toLocaleString(lang === "en" ? "en-GB" : "ru-RU", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }));
 }
 $("catQ").addEventListener("input", renderCatalog);
